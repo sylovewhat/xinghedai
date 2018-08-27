@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+				<div class="content">
+					<!-- 这里是页面内容区 -->
+					<div class="wy26-nr1">
+						<div class="wy26-img"><img src="images/wy26-img.png" class="img-responsive"> </div>
+						<h4>透明、稳健、专业、高效</h4>
+
+					</div>
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li>
+								<a href="">
+									<h4>官方微信 </h4>
+									<h5 class="co9">公众号：xinhedai</h5>
+									<div style="clear: both;"></div>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<h4>官方网站</h4>
+									<h5 class="co9">http://www.xinhedai.com</h5>
+									<div style="clear: both;"></div>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<h4>客服邮箱</h4>
+									<h5 class="co9">kf@xinhedai.com</h5>
+									<div style="clear: both;"></div>
+								</a>
+							</li>
+
+							<li>
+								<a href="">
+									<h4>客服电话</h4>
+									<h5 class="co9">400-033-0929 </h5>
+									<div style="clear: both;"></div>
+								</a>
+							</li>
+							<li>
+								<a href="">
+									<h4>检测新版</h4>
+									<h5 class="co9">V2.0<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</a>
+							</li>
+						</ul>
+					</div>
+
+					<h5 class="gywm_b co9">© 2018 信和贷 版权所有 闽ICP备13001065号-1 <br>福建信和贷金融信息服务有限公司</h5>
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "关于信和贷";
+			json["leftViewImg"] = "goback";
+
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

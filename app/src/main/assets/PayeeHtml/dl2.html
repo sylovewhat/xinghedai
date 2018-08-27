@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信和贷</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- SUI模板-基本样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm.min.css">
+    <!-- SUI模板-拓展包样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page">    
+        <div class="content dl_bei">
+            <!-- 这里是页面内容区 -->
+			 
+			<div class="piece_of"> 
+				<div class="con_tent">
+					<div class="row_zhong">
+					  <div class="div_img"><a href=""><img class="Automatic_scaling" src="images/dl-tx.png"></a></div>
+					  <div class="div_phone"> 13559932188</div>
+					  <div style="clear:both;"></div>
+					</div>
+				</div>
+			</div>
+			<div class="list-blocl">
+				    <div class="dl_shu pt0">
+				 	      <input class="text zc_text" type="text" value="请输入登录密码" onblur="this.value==''?this.value='请输入登录密码':null;" onfocus="this.value==this.defaultValue?this.value='':null;">
+					         <!--删除-->
+							<div class="cancel"><a href=""><img class="Automatic_scaling" src="images/cancel.png"></a></div>
+							  <!--显示隐藏-->
+							 <div id="my_show" class="d_show"><a href="javascript:void(0)"><img class="Automatic_scaling" src="images/d_show.png"></a></div> 
+							<div  id="my_hide" class="d_hide"><a href="javascript:void(0)"><img class="Automatic_scaling" src="images/d_hide.png"></a></div>
+							
+				    </div>  
+				<div class="dl_den"><a class="button btn_big2 subm" onclick=login_turn();>登 录</a></div>
+				<div class="dl_yan"> 
+					<a class="dl_zhu_right co9" href="zh_mima1.html">忘记密码?</a>
+					<div style="clear:both;"></div>
+				</div> 
+			</div>
+			  
+        </div>
+    </div>
+</div>
+
+
+<!-- SUI模板-基本样式.js -->
+<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+<!-- SUI模板-拓展包样式.js -->
+<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/jquery.1.4.2-min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/login.js' charset='utf-8'></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script src="js/init.js"></script>
+ <script>
+ 	var json = {};
+ 	json["centerTitle"]="登录";
+	json["leftViewImg"]="goback";
+   
+	json["backgroudColor"]=NAVCOLOR;
+	window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+    
+    function leftBtnClick(){
+    	window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+    }
+    
+    
+    function rightBtnClick(){
+    		
+    }
+    
+    function login_turn(){
+    	set("IF_LOGIN","1");
+    		var json = {};
+ 		json["backIndex"]="1";
+		window.APPJS.unifyClassMethod("NavgationViewClass", "backMain", JSON.stringify(json), "");
+    }
+ </script>
+
+ 
+
+</body>
+</html>

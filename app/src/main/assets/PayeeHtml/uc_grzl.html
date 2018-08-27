@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+				<div class="content">
+					<!-- 这里是页面内容区 -->
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A href="">
+									<h4>头像</h4>
+									<h5><div class="wy14-img"><img class="img-responsive block" src="images/wd_tx2.png"></div> </h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A href="">
+									<h4>用户名</h4>
+									<h5 class="co3">18965045751<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A onclick=gotoNextHtml("uc_phone.html");>
+									<h4>绑定手机号</h4>
+									<h5 class="co3">189****5751<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A onclick=gotoNextHtml("uc_email.html");>
+									<h4>绑定邮箱</h4>
+									<div class="tishi">绑定得积分</div>
+									<h5 class="orange">未绑定<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A onclick=gotoNextHtml("uc_grzl_xq.html");>
+									<h4>详细资料</h4>
+									<div class="tishi">完善得积分</div>
+									<h5 class="orange">未完善<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A onclick=gotoNextHtml("uc_tz_zb.html");>
+									<h4>投资前准备</h4>
+									<h5 class="co9">存管账户、银行卡、免密等<i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="list-block wy13-nr1">
+						<ul class="wy14-ul">
+							<li class="bot">
+								<A href="">
+									<h4>登录日志</h4>
+									<h5 class="co9"> <i class="icon icon-right"></i></h5>
+									<div style="clear: both;"></div>
+								</A>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "个人资料";
+			json["leftViewImg"] = "goback";
+
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

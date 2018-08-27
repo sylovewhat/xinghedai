@@ -1,0 +1,888 @@
+
+<!doctype html>
+<html lang="en" class="feedback">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>问题反馈</title>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/feedback.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+	<link href="css/mui.poppicker.css" rel="stylesheet" />
+     <style>
+        .mui-popover {
+           height: 240px;
+        }
+
+        .no-header {
+            display: none;
+        }
+
+        .mui-content.without-header {
+            padding-top: 0;
+        }
+        
+        .update {
+				font-style: normal;
+				color: #999999;
+				margin-right: -25px;
+				font-size: 15px
+			}
+			.mui-table-view-cell:after,
+			.mui-table-view:after{background-color: #FFFFFF;}
+			
+			
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+    </style>
+</head>
+
+<body>
+<header class="mui-bar mui-bar-nav " style="display: none;">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+    <button id="submit" class="mui-btn mui-btn-blue mui-btn-link mui-pull-right">发送</button>
+    <h1 class="mui-title">问题反馈</h1>
+</header>
+<div class="mui-content" style="padding: 0;">
+	<input type="hidden" id="equipId" name="equipId" />
+	<input type="hidden" id="equipOrgId" name="equipOrgId" />
+	<input type="hidden" id="equipFirstOrgId" name="equipFirstOrgId" />
+	<input type="hidden" id="equipSecondOrgId" name="equipSecondOrgId" />
+	<input type="hidden" id="equipThirdOrgId" name="equipThirdOrgId" />
+	<input type="hidden" id="equipFourthOrgId" name="equipFourthOrgId" />
+	
+	<p>网点信息</p>
+	<div class="row mui-input-row">
+       <div class="content">
+							<ul class="mui-table-view mui-table-view-chevron" style="position:static;">
+							<li class="mui-table-view-cell"  style="position:static;" id='firstPicker'>
+								<a href="javascript:void(0)" class="mui-navigate-right">分行<i class="mui-pull-right update" id="equipFirstOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static; " id="sencondPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right">辖区分行<i class="mui-pull-right update" id="equipSecondOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="thirdPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right" >支行<i class="mui-pull-right update" id="equipThirdOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="fourthPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right" >社区支行<i class="mui-pull-right update" id="equipFourthOrgName">请选择</i></a>
+							</li>
+						</ul>
+						</div>
+    </div>
+	
+	
+	<p>故障设备</p>
+	<div class="row mui-input-row">
+       <div class="content">
+							<ul class="mui-table-view mui-table-view-chevron" style="position:static;">
+							<li class="mui-table-view-cell" style="position:static; " id='sb'>
+								<a href="javascript:void(0)" class="mui-navigate-right">设备<i class="mui-pull-right update"  id="sbtxt">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="promptBtn">
+								<a href="javascript:void(0)" class="mui-navigate-right">输入终端号或序列号<i class="mui-pull-right update" id="shouNo"></i></a>
+							</li>
+						</ul>
+						</div>
+    </div>
+	
+	
+    <div class="mui-content-padded">
+        <div class="mui-inline">故障描述</div>
+        <a class="mui-pull-right mui-inline" href="#popover">
+            	快捷输入
+            <span class="mui-icon mui-icon-arrowdown"></span>
+        </a>
+        <!--快捷输入具体内容，开发者可自己替换常用语-->
+        <div id="popover" class="mui-popover">
+            <div class="mui-popover-arrow"></div>
+            <div class="mui-scroll-wrapper">
+                <div class="mui-scroll">
+                    <ul class="mui-table-view">
+                        <!--仅流应用环境下显示-->
+                        <li class="mui-table-view-cell">
+                            <a href="#">屏幕闪屏</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a href="#">键盘失灵</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a href="#">系统错误</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a href="#">界面显示错乱</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a href="#">启动缓慢</a>
+                        </li>
+                        <li class="mui-table-view-cell">
+                            <a href="#">偶发性崩溃</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    
+    
+    <div class="row mui-input-row">
+        <textarea id='question' class="mui-input-clear question" placeholder="请详细描述您的问题和意见..."></textarea>
+    </div>
+    <p>图片(选填,提供问题截图,总大小10M以下)</p>
+     <div id='image-list' style="display: none;"></div>
+    <div  class="row image-list">
+    	
+    	<div id="imageDiv" style="width: 65px; height: 65px; float: left;margin-right: 10px; margin-bottom: 10px;"><img src="img/add.png" width="65" height="65"></div>
+    	
+    </div>
+    
+    <div style="width: 100%; display: flex; z-index: 9; ">
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-block" style="margin: 15px;" id="repairIndex">故障报修</button>
+	</div>
+
+	<script src="js/mui.min.js"></script>
+	<script src="js/feedback.js" type="text/javascript" charset="utf-8"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script src="js/mui.picker.js"></script>
+	<script src="js/mui.poppicker.js"></script>
+	<script src="js/mui.zoom.js"></script>
+	<script src="js/mui.previewimage.js"></script>
+<script type="text/javascript">
+	mui.previewImage();
+	var firstPicker;
+    var sencondPicker ;
+    var thirdPicker ;
+    var fourthPicker ;
+    var equipPicker ;
+    
+    var showFirstPickerButton;
+    var firstResult;
+    var firstResultId;
+    
+    var equipList;
+    var equipOrgId; 
+    
+    var equipResult;
+	var tempEquipId ;
+	var shouNo;
+	
+	var firstPickerLi=0;
+    var sencondPickerLi=0;
+    var thirdPickerLi=0;
+    var fourthPickerLi=0;
+    
+ 		(function($, doc) {
+				$.init();
+				$.ready(function() {
+					init_title();
+					
+					initOrg();
+					//手动终端号
+					shouNo = doc.getElementById('shouNo');
+					equipOrgId = doc.getElementById('equipOrgId');
+					
+					//二级
+					sencondPicker = new $.PopPicker();
+					var showSecondPickerButton = doc.getElementById('sencondPicker');
+					var secondResult = doc.getElementById('equipSecondOrgName');
+					var secondResultId = doc.getElementById('equipSecondOrgId');
+					showSecondPickerButton.addEventListener('tap', function(event) {
+						if(sencondPickerLi!=0){
+							return;
+						}
+						if(isEmpty(firstResultId)){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="请先选择分行";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						sencondPicker.show(function(items) {
+							if(firstResultId != items[0].value){
+								
+								//取三级单位
+								secondResult.innerText = items[0].text;
+							    secondResultId.value = items[0].value;
+								equipOrgId.value = items[0].value;
+								
+								thirdResult.innerText = "请选择";
+							    thirdResultId.value = " ";
+							    
+							    fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							    
+								var json =requestJson(15);
+					        	json["orgId"]=items[0].value;
+					        	json["hud_type"]="1";
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "thirdSelect");
+							}else{
+								secondResult.innerText = "请选择";
+							    secondResultId.value = items[0].value;
+								equipOrgId.value = firstResultId;
+								
+								thirdResult.innerText = "请选择";
+							    thirdResultId.value = " ";
+							    
+							    fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							    
+							    getEquipList();
+							}
+						
+						});
+					}, false);
+					
+					
+					//三级
+					thirdPicker = new $.PopPicker();
+					var showThirdPickerButton = doc.getElementById('thirdPicker');
+					var thirdResult = doc.getElementById('equipThirdOrgName');
+					var thirdResultId = doc.getElementById('equipThirdOrgId');
+					showThirdPickerButton.addEventListener('tap', function(event) {
+						if(thirdPickerLi!=0){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="暂无支行可选";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						if(isEmpty(secondResultId.value)){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="请先选择辖区分行";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						if(secondResult.innerText=="请选择"){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="请先选择辖区分行";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						thirdPicker.show(function(items) {
+							if(secondResultId.value != items[0].value){
+								//取四级单位
+								thirdResult.innerText = items[0].text;
+							    thirdResultId.value = items[0].value;
+								equipOrgId.value = items[0].value;
+								
+								var json =requestJson(15);
+					        	json["orgId"]=items[0].value;
+					        	json["hud_type"]="1";
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "fourthSelect");
+								
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							}else{
+								thirdResult.innerText = "请选择";
+							    thirdResultId.value = items[0].value;
+								equipOrgId.value = secondResultId.value;
+								
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							    
+							    getEquipList();
+							}
+						
+						});
+					}, false);
+					
+					
+					//四级
+					fourthPicker = new $.PopPicker();
+					var showFourthPickerButton = doc.getElementById('fourthPicker');
+					var fourthResult = doc.getElementById('equipFourthOrgName');
+					var fourthResultId = doc.getElementById('equipFourthOrgId');
+					showFourthPickerButton.addEventListener('tap', function(event) {
+						if(fourthPickerLi!=0){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="暂无社区支行可选";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						if(isEmpty(thirdResultId.value)){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="请先选择支行";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						if(thirdResult.innerText=="请选择"){
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="请先选择支行";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+							return;
+						}
+						fourthPicker.show(function(items) {
+							if(thirdResultId.value != items[0].value){
+								//取四级单位
+								fourthResult.innerText = items[0].text;
+							    fourthResultId.value = items[0].value;
+								equipOrgId.value = items[0].value;
+								
+								getEquipList();
+							}else{
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = items[0].value;
+								equipOrgId.value = thirdResultId.value;
+								
+								getEquipList();
+							}
+							
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});
+					}, false);
+					
+					
+					//设备列表
+					equipPicker = new $.PopPicker();
+					var showEquipPickerButton = doc.getElementById('sb');
+					equipResult = doc.getElementById('sbtxt');
+					tempEquipId = doc.getElementById('equipId');
+					
+					showEquipPickerButton.addEventListener('tap', function(event) {
+						if(!isEmpty(equipList)){
+							equipPicker.show(function(items) {
+							
+							equipResult.innerText = items[0].text;
+							shouNo.innerText =  items[0].spdbNo;
+							
+							tempEquipId.value = items[0].value;
+
+							});
+						}else{
+							equipResult.innerText = "请选择";
+							shouNo.innerText =  "";
+							tempEquipId.value = "";
+							
+							var json={};
+							json["showType"]="0";
+							json["showTitle"]="该网点暂无设备可选";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+						}
+						
+					}, false);
+					
+					 
+					//手动输入终端号或序列号
+					document.getElementById("promptBtn").addEventListener('tap', function(e) {
+						
+						e.detail.gesture.preventDefault(); //修复iOS 8.x平台存在的bug，使用plus.nativeUI.prompt会造成输入法闪一下又没了
+						var btnArray = ['取消', '确定'];
+						mui.prompt('请输入设备的终端号或序列号：', '', 'Hello MUI', btnArray, function(e) {
+							if (e.index == 1) {
+								
+								var json =requestJson(13);
+								json["spdbNo"]=e.value;
+								json["hud_type"]="1";
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "spdbNo_action");
+						
+							} else {
+								///info.innerText = '你点了取消按钮';
+							}
+						})
+					});
+					
+					//拍照
+					 document.getElementById("imageDiv").addEventListener('tap', function(e) {
+						
+						var json = "{\"getImageType\":\"2\",\"compression\":\"1\"}";
+        				window.APPJS.unifyClassMethod("ImageChoiceViewController", "choose_picture", json, "imagerFunction");
+					});
+					
+				});
+			})(mui, document);
+		
+		
+		
+		function init_title() {
+            
+            var json = {};
+				json["centerTitle"]="设备报修";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+		}
+
+		//初始化单位
+		function initOrg(){
+			var json =requestJson(27);
+        	
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "showOrg");
+		}
+		
+		//首次显示org
+		function showOrg(response){
+			if(!response["success"]) {
+				tokenAction(response); 
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+				return;
+			}
+			
+			$("#equipFirstOrgName").text(response["equipFirstOrgName"]);
+			$("#equipSecondOrgName").text(response["equipSecondOrgName"]);
+			$("#equipThirdOrgName").text(response["equipThirdOrgName"]);
+			$("#equipFourthOrgName").text(response["equipFourthOrgName"]);
+			
+			$("#equipFirstOrgId").val(response["equipFirstOrgId"]);
+			firstResultId=response["equipFirstOrgId"];
+			$("#equipSecondOrgId").val(response["equipSecondOrgId"]);
+			$("#equipThirdOrgId").val(response["equipThirdOrgId"]);
+			$("#equipFourthOrgId").val(response["equipFourthOrgId"]);
+			
+			$("#equipOrgId").val(response["equipOrgId"]);
+			
+			if(!isEmpty(response["equipFirstOrgId"])){
+				var json =requestJson(15);
+        		json["orgId"]=response["equipFirstOrgId"];
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "secondSelect");
+			}
+			
+			if(!isEmpty(response["equipSecondOrgId"])){
+				sencondPickerLi=1;
+				var json =requestJson(15);
+        		json["orgId"]=response["equipSecondOrgId"];
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "thirdSelect");
+			}
+			
+			if(!isEmpty(response["equipThirdOrgId"])){
+				thirdPickerLi=1;
+				var json =requestJson(15);
+        		json["orgId"]=response["equipThirdOrgId"];
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "fourthSelect");
+			}
+			
+			if(!isEmpty(response["equipFourthOrgId"])){
+				fourthPickerLi=1;
+			}
+		}
+		
+		function leftBtnClick() {
+            window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+        };
+        
+        
+        function firstSelect(response){
+        	if(!response["success"]) {
+        		tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+        	
+			firstPicker.setData(response["data"]);
+        	
+        	equipOrgId.value = response["data"][0].value;
+			firstResult.innerText = response["data"][0].text;
+			firstResultId = response["data"][0].value;
+        	
+        	var json =requestJson(15);
+        	
+        	json["orgId"]=response["data"][0].value;
+		    json["hud_type"]="1";     	
+        	window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "secondSelect");
+        	
+        	getEquipList();
+		}
+        
+        function secondSelect(response){
+        	if(!response["success"]) {
+        		tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+			sencondPicker.setData(response["data"]);
+        	
+        	getEquipList();
+		}
+        
+        function thirdSelect(response){
+        	if(!response["success"]) {
+        		tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+        	//判断是否有下级单位
+        	if(response["data"].length==1){
+        		thirdPickerLi = 1;
+        	}else{
+        		thirdPicker.setData(response["data"]);
+        	}
+			
+			getEquipList();
+		}
+        
+        function fourthSelect(response){
+        	if(!response["success"]) {
+        		tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+        	//判断是否有下级单位
+        	if(response["data"].length==1){
+        		fourthPicker = 1;
+        	}else{
+        		fourthPicker.setData(response["data"]);
+        	}
+			
+			getEquipList();
+		}
+        
+        function getEquipList(){
+        	var tempEquipOrgId = $("#equipOrgId").val();
+        	var json =requestJson(12);
+        	json["dotOrgId"]=tempEquipOrgId;
+        	json["hud_type"]="1";
+        	
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "equipList_action");
+        	
+        }
+        
+        function spdbNo_action(response){
+        	var equipName = document.getElementById('sbtxt');
+        	if(!response["success"]) {
+        		tokenAction(response); 
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+				shouNo.innerText = "";
+				equipName.innerText ="请选择";
+				$("#equipId").val("");
+				return;
+			}
+        	
+        	
+    		shouNo.innerText = response["equipSpdbNo"];
+			equipName.innerText = response["equipName"];
+			
+			$("#equipFirstOrgName").text(response["equipFirstOrgName"]);
+			$("#equipSecondOrgName").text(response["equipSecondOrgName"]);
+			$("#equipThirdOrgName").text(response["equipThirdOrgName"]);
+			$("#equipFourthOrgName").text(response["equipFourthOrgName"]);
+			
+			$("#equipFirstOrgId").val(response["equipFirstOrgId"]);
+			firstResultId=response["equipFirstOrgId"];
+			
+			$("#equipSecondOrgId").val(response["equipSecondOrgId"]);
+			$("#equipThirdOrgId").val(response["equipThirdOrgId"]);
+			$("#equipFourthOrgId").val(response["equipFourthOrgId"]);
+			
+			$("#equipOrgId").val(response["equipOrgId"]);
+			$("#equipId").val(response["equipId"]);
+			
+			if(!isEmpty(response["equipFirstOrgId"])){
+				var json =requestJson(15);
+        		json["orgId"]=response["equipFirstOrgId"];
+        		json["hud_type"]="1";
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "secondSelect");
+			}
+			
+			if(!isEmpty(response["equipSecondOrgId"])){
+				sencondPickerLi=1;
+				var json =requestJson(15);
+        		json["orgId"]=response["equipSecondOrgId"];
+        		json["hud_type"]="1";
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "thirdSelect");
+			}
+			
+			if(!isEmpty(response["equipThirdOrgId"])){
+				thirdPickerLi=1;
+				var json =requestJson(15);
+        		json["orgId"]=response["equipThirdOrgId"];
+        		json["hud_type"]="1";
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "fourthSelect");
+			}
+			
+			if(!isEmpty(response["equipFourthOrgId"])){
+				fourthPickerLi=1;
+			}
+        }
+        
+        function equipList_action(response){
+        	if(!response["success"]) {
+        		tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+			
+			
+			equipList=response["data"];
+			equipPicker.setData(response["data"]);
+		
+			if(isEmpty(response["data"])){
+				equipResult.innerText = "请选择";
+				shouNo.innerText =  "";
+							
+				tempEquipId.value = "";	
+			}
+        	
+		}
+        
+		var jsonImg = new Array();
+		function imagerFunction(response){
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDend", "", "");
+			
+			var json = {};
+			json["imageBase64"] =response["image"]
+			window.APPJS.unifyClassMethod("ImageChoiceViewController", "loadImageFinished", JSON.stringify(json), "");
+			
+			jsonImg.unshift(response["image"]);
+			
+			var tempImg='<div style="width: 65px; height: 65px; float: left;margin-right: 10px; margin-bottom: 10px;position: relative;"><span class="mui-badge mui-badge-danger" data-id="'+jsonImg.length+'" style="font-size: 16px; position: absolute; right: -5px; top: -5px;">×</span><img src="data:image/jpg;base64,'+response["image"]+' " width="65" height="65" data-preview-src="" data-preview-group="1"></div>';
+			$(".image-list").prepend(tempImg);
+		}
+		
+		
+		$(".image-list").on("tap","div span",function(){
+			var ind = $('.image-list div span').index(this);
+			$(this).parent('div').remove();
+			jsonImg.splice(ind,1);
+		})
+		
+		
+		//报修提交
+        document.getElementById('repairIndex').addEventListener('tap', function () {
+        	
+      		var json =requestJson(14);
+        	
+        	var questionValue = $("#question").val();
+        	var equipIdValue =  $("#equipId").val();
+        	
+        	if(isEmpty(equipOrgId)){
+        		var json={};
+				json["showType"]="0";
+				json["showTitle"]="请选择设备网点";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+				return;
+        	}
+        	
+        	if(isEmpty(equipIdValue)){
+        		var json={};
+				json["showType"]="0";
+				json["showTitle"]="请选择设备";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+				return;
+        	}
+        	
+        	json["equipId"]=equipIdValue;
+        	json["faultDes"]=questionValue;
+			json["imgList"] = JSON.stringify(jsonImg);
+			
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "goOrderDetail");
+		});
+		
+		function goOrderDetail(response){
+			if(!response["success"]) {
+				tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+			
+			var json = {};
+			json["url_html"]="repairView.html";
+			json["viewHeigh"]="0";
+			json["loadType"]="0";
+			json["url_data"]="?_id="+response["orderId"]+"&_type=1";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "tabBarHidden");
+
+		}
+		function isEmpty(s) {
+			return s == null || typeof s == undefined || s == "" || s.length == 0 || s == "null";
+		}
+</script>
+</body>
+
+</html>

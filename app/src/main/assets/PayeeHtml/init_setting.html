@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>初始化设置 - 仅供调试使用</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="./css/mui.picker.min.css" />
+	<style>
+		
+
+		.hide {
+			display: none;
+		}
+
+		.text {
+			border: solid 1px #ccc;
+			height: 1.75rem;
+			background: url(./img/ywygl.png) no-repeat 0 center;
+			background-size: 20px;
+			background-position: .335rem 0.25rem;
+			border-radius: 1.25rem;
+			border-right: 0;
+			background-color: #ffffff;
+			width: 70%;
+			margin: 0 auto;
+		}
+
+		.text input {
+			border: none;
+			background: none;
+			width: 100%;
+			text-indent: 2rem;
+			text-align: left;
+			border-right: 0;
+			border-top-left-radius: 1.25rem;
+			border-bottom-left-radius: 1.25rem;
+			margin-bottom: 0px;
+			font-size: .75rem;
+			height: 1.75rem;
+			padding: 0;
+		}
+
+		header button {
+			border-top-right-radius: 1.25rem;
+			border-bottom-right-radius: 1.25rem;
+			padding: 0 0.8rem;
+			color: white;
+			background-color: #00a1fd;
+		}
+
+		div.mui-input-row.mui-search {
+			margin: 0px auto 0px;
+			width: 100%;
+		}
+
+		.mui-search .mui-placeholder {
+			font-size: .875rem;
+			border-radius: 0px;
+			width: 100%;
+		}
+
+		.mui-search .mui-placeholder {
+			height: 2.1875rem;
+			background-color: #eee;
+		}
+
+		body {
+			background: #efeff4;
+		}
+
+		li.mui-input-row {
+			border: 1px solid #eee;
+			position: relative;
+		}
+
+		.typeImg {
+			border: 1px solid #ddd;
+			border-radius: 3px;
+		}
+
+		input[type=button] {
+			line-height: 2;
+		}
+
+		.mui-input-row label {
+			display: inline-block;
+			float: none;
+			padding: 12px 15px;
+			vertical-align: top;
+			width: 120px;
+		}
+
+		input[type="text"] {
+			display: inline-block;
+			padding: 10px 36px;
+		}
+
+		.mui-row {
+			text-align: center;
+		}
+
+		.mui-content-padded button {
+			width: 30%;
+			background: #00a1fd !important;
+			color: white !important;
+			font-weight: 700 !important;
+			border-radius: 6px;
+		}
+
+		.mui-input-row input[type='text'],
+		.mui-input-row input[type='button'] {
+			text-align: right;
+		}
+
+		.gl {
+			width: 12px;
+			height: 12px;
+			position: absolute;
+			top: 16px;
+			right: 6px;
+			border-left: 1px solid #999;
+			/* border-bottom: 1px solid #999; */
+			border-top: 1px solid #999;
+			/* border-right: 1px solid #999; */
+			-webkit-transform: translate(0, -50%) rotate(-135deg);
+			transform: translate(0, -50%) rotate(-135deg);
+		}
+
+		.mui-btn-blue,
+		.mui-btn-primary,
+		input[type=submit] {
+			color: #fff;
+			border: 1px solid #00a1fd;
+			background-color: #00a1fd;
+		}
+
+		input[type="checkbox"],
+		input[type="radio"] {
+			display: block;
+			margin-top: 1px;
+		}
+
+		li.mui-input-row:nth-of-type(1) {
+			display: flex;
+		}
+
+		li.mui-input-row:nth-of-type(1) label {
+			/* display: flex; */
+			justify-content: space-around;
+		}
+
+		.show {
+			display: block;
+		}
+
+		.mui-segmented-control {
+			border-color: #00a1fd;
+			border-radius: 20px;
+			width: 90%;
+			margin: 0 auto;
+		}
+
+		.mui-segmented-control .mui-control-item.mui-active {
+			background: #00a1fd;
+			color: white;
+		}
+
+		.mui-segmented-control .mui-control-item {
+			color: #00a1fd;
+			background-color: transparent;
+			border-color: #00a1fd;
+			border-left: 0;
+			line-height: 36px;
+		}
+
+		#segmentedControl a,
+		.mui-input-row label,
+		.mui-input-row input {
+			font-size: 0.895rem;
+		}
+
+		.mui-content-padded button {
+			width: 100%;
+			padding: .5875rem 0;
+			border: none;
+			outline: none;
+			border-radius: .3125rem;
+			-webkit-border-radius: .3125rem;
+			background: #ff2d55;
+			color: #fff;
+			font-size: 1rem;
+		}
+    
+	    .mui-input-row label~input {
+	        width: calc(100% - 130px);
+	    }
+	
+		.expect{
+	    	position: absolute;
+	    	z-index: 99;
+	    	width: 100%;
+	    	text-align: center;
+	    	font-size: 16px;
+	    	
+	    }
+	</style>
+</head>
+
+<body>
+	<header id="header" class="mui-bar mui-bar-nav">
+		<h1 class="mui-title">初始化设置</h1>
+	</header>
+	<div class="mui-content">
+		<p style="margin: 15px 15px;">这是通用的原生调试框架， 你可以在此页面做初始化设置，完成后直接进入页面调试
+		</p>
+		
+		<!--<h5 class="mui-content-padded" style="margin-top: 35px;">服务器地址</h5>-->
+		<!--<form class="mui-input-group" style="margin-bottom: 15px;">
+			<div class="mui-input-row mui-radio">
+				<label>不显示</label>
+				<input name="style" type="radio" checked="" value="right-none">
+			</div>
+			<div class="mui-input-row mui-radio">
+				<label>仅图标</label>
+				<input name="style" type="radio" value="right-icon">
+			</div>
+			<div class="mui-input-row mui-radio">
+				<label>文字按钮</label>
+				<input name="style" type="radio" value="right-btn">
+			</div>
+		</form>-->
+	</div>
+	<div style="height: auto; background: #fff;">
+		<div id="item1" class="mui-control-content mui-active">
+			<ul id="item1">
+				<div class="mui-input-row">
+					<label>服务器地址</label>
+					<input id="sPath" type="text" class="mui-input-clear" readonly="true" value="http://192.168.3.108:8020/0810xhd-app/">
+				</div>
+				<div class="mui-input-row" style="border:1px solid #eee;">
+					<label>请选择软件 </label>
+					<input type="text" value="" id="app_version" readonly="true">
+					<em class="gl"></em>
+				</div>
+				<div class="mui-input-row">
+					<label>软件类型 </label>
+					<input type="text" value="" id="app_type" readonly="true">
+					<em class="gl"></em>
+				</div>
+				<div class="mui-input-row">
+					<label>初始页面</label>
+					<input id="sOpen" type="text" class="mui-input-clear" value="default.html">
+				</div>
+			</ul>
+		</div>
+	</div>
+	<div class="mui-content" style="padding-top:5px;">
+		<p style="margin: 15px 15px;">当前地址：<span id="serverPath">http://10.0.0.31/</span></p>
+	</div>
+	<div class="mui-content-padded mui-row">
+		<div class="mui-content-padded">
+			<button class="mui-btn" type="button" id="sure-btn">确定</button>
+		</div>
+	</div>
+
+	<div class="expect">其他服务器？<span id="scanCode" style="color:red">点此扫码</span></div>
+</body>
+
+<script src="js/mui.min.js"></script>
+<script src="./js/mui.picker.min.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+<script type="text/javascript">
+	var server_path = "http://10.0.0.31/";
+	var app_version_path = "";
+	var app_type_path = "";
+	var app_path = "";
+	var app_array;
+	var admin_array = [{
+			value: 'Pay_DX_APP_2017',
+			text: '电信如翼'
+		}, {
+			value: 'Pay_MAIN_APP_2017',
+			text: '云收单'
+		}, {
+			value: 'Pay_MS_APP_2017',
+			text: '一码通'
+		}, {
+			value: 'Pay_YC_APP_2017',
+			text: '邮储'
+		}, {
+			value: 'WORK_OTHER',
+			text: '其他'
+		}];
+	var sh_array = [{
+			value: 'Pay_MAIN_SH_APP_2017',
+			text: '云收单'
+		}, {
+			value: 'Pay_MS_SH_APP_2017',
+			text: '一码通'
+		}, {
+			value: 'Pay_YC_SH_APP_2017',
+			text: '邮储'
+		}];
+		
+	mui.ready(function () {
+	//var json = {};
+	//json["centerTitle"]="基座调试";
+	//json["backgroudColor"]="#528ee7";//设置成绿色
+	//设置标题栏颜色，和各项值
+	//window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+
+	//var jsonStatusBar = {};
+	//jsonStatusBar["color"]="#528ee7";//设置成绿色
+	//jsonStatusBar["full_screen"]="1";//是否全屏展示：1  or  0   1表示全屏  0表示非全屏
+	//设置状态栏颜色
+    //window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonStatusBar), "");
+	
+		var getAccount = "{\"UPDATE_LOCAL_MAIN\":\"\",\"FIRST_HTML\":\"\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "localhostGet", getAccount, "returnGet");
+	});
+	
+	function returnGet(json){
+		if(json["UPDATE_LOCAL_MAIN"]){
+			app_path = json["UPDATE_LOCAL_MAIN"];
+			document.getElementById('serverPath').innerHTML = app_path;
+			document.getElementById('sPath').value = app_path;
+		}
+		if(json["FIRST_HTML"]){
+			document.getElementById('sOpen').value = json["FIRST_HTML"];
+		}
+	}
+	
+	/*选择软件*/
+	document.getElementById('app_version').addEventListener('tap', function () {
+		var picker = new mui.PopPicker();
+		picker.setData([{
+			value: 'PAYEE_ADMIN_HTML',
+			text: '进件版'
+		}, {
+			value: 'PAYEE_SH_HTML',
+			text: '商户版'
+		}]);
+
+		picker.show(function (items) {
+			app_version_path = (items[0] || {}).value;
+			document.getElementById('app_version').value = (items[0] || {}).text;
+			if((items[0] || {}).text == "进件版"){
+				app_array = admin_array;
+			}else{
+				app_array = sh_array;
+			}
+		});
+	});
+	
+	/*选择软件类型*/
+	document.getElementById('app_type').addEventListener('tap', function () {
+		if (document.getElementById('app_version').value == "") {
+			alert("请先选择软件");
+			return;
+		}
+		var picker = new mui.PopPicker();
+		picker.setData(app_array);
+
+		picker.show(function (items) {
+			document.getElementById('app_type').value = (items[0] || {}).text;
+			app_type_path = (items[0] || {}).value;
+		});
+	});
+
+	//按钮点击事件
+	document.getElementById('sure-btn').addEventListener('tap', function () {
+		/*if (document.getElementById('app_type').value == "") {
+			alert("请选择软件类型");
+			return;
+		}
+		 app_path = server_path + app_version_path + "/" + app_type_path + "/"; */
+
+		//开屏展示页地址
+		app_path=document.getElementById('sPath').value;
+		//alert(app_path); 
+		alertTip();
+	});
+	
+	function alertTip(){
+		var jsonstr = "{\"alertType\":\"0\",\"alertChoice\":\"是，立即进入/&否\",\"alertTitle\":\"请确认当前地址是否正确：" + app_path + "\"}";
+    	window.APPJS.unifyClassMethod("FuctionClass", "alertSheetShow", jsonstr, "returnAlert");
+	}
+	
+	function returnAlert(json) {
+    	if (json["alertChoice"] == 0) {
+    		saveGo();
+        }
+    }
+	
+	function saveGo(){
+	    //开屏展示页地址获取
+		var firstHtml = document.getElementById('sOpen').value;
+		var saveAccount = "{\"UPDATE_LOCAL_MAIN\":\"" + app_path + "\",\"FIRST_HTML\":\"" + firstHtml + "\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "localhostSave", saveAccount, "returnSave");
+	}
+	
+	function returnSave(){
+		/* 弹出提示 */
+		var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"保存成功，正在进入...\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+		
+
+		//这边才是进行跳转  进入设置的默认页
+		var firstHtml = document.getElementById('sOpen').value;
+		var json = "{\"url_html\":\""+firstHtml+"\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+	window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "");
+		
+	}
+	
+	document.getElementById('scanCode').addEventListener('tap', function () {
+		var json = "{\"scanType\":\"1\"}"
+		window.APPJS.unifyClassMethod("SecJumpHrefClass", "getScanCode", json, "returnCode");
+	});
+	
+	function returnCode(json) {
+		var path = json['result'];
+		if(path == "" || path.indexOf("http") < 0){
+			alert("二维码错误:" + path);
+			return;
+		}
+		
+		var index = path.lastIndexOf("\/");  
+		app_path = path.substring(0, index + 1);
+		var firstHtml = path.substring(index + 1, path.length);
+		document.getElementById('serverPath').innerHTML = app_path;
+		document.getElementById('sPath').value = app_path;
+		document.getElementById('app_version').value = "默认扫码";
+		document.getElementById('app_type').value = "默认扫码";
+		
+		document.getElementById('sOpen').value = firstHtml;
+		
+		/* alertTip(); */
+	}
+</script>
+
+</html>

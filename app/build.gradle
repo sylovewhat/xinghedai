@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "28.0.1"
+
+    defaultConfig {
+        applicationId "com.tc.emms"
+        minSdkVersion 11
+        targetSdkVersion 21
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+
+        ndk {
+            moduleName "libjpegbither"
+        }
+    }
+
+    //签名信息
+    signingConfigs {
+        config {
+            keyAlias 'xinghedai'
+            keyPassword '161616'
+            storeFile file('F:/WorkSpace/EclipseWorkSpace/秘钥/xinghedai.jks')
+            storePassword '161616'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+}
+
+dependencies {
+
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile files('libs/alicloud-android-push-sdk-3.0.12.jar')
+    compile files('libs/alicloud-android-ut-5.1.0.jar')
+    compile files('libs/core.jar')
+    compile files('libs/fastjson-1.2.39.jar')
+    compile files('libs/jg_filter_sdk_1.1.jar')
+    compile files('libs/license.jar')
+    compile files('libs/mid-core-sdk-4.0.6.jar')
+    compile files('libs/Msc.jar')
+    compile files('libs/ocr-sdk.jar')
+    compile files('libs/ormlite-android-5.0.jar')
+    compile files('libs/ormlite-core-5.0.jar')
+    compile files('libs/Sunflower.jar')
+    compile files('libs/tbs_sdk_thirdapp_v3.5.0.1004_43500_sharewithdownload_withoutGame_obfs_20170801_113025.jar')
+    compile files('libs/universal-image-loader-1.9.3.jar')
+    compile files('libs/utdid4all-1.1.5.3_proguard.jar')
+    compile files('libs/wechat-sdk-android-with-mta.jar')
+    compile files('libs/wup-1.0.0.E-SNAPSHOT.jar')
+    compile files('libs/Xg_sdk_v3.2.2_20180116_1704.jar')
+}

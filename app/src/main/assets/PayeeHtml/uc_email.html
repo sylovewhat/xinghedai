@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+
+				<div class="content">
+					<!-- 这里是页面内容区 -->
+
+					<form>
+						<div class="list-block wy15-nr1">
+							<form>
+								<ul class="wy15-nr1-ul wy16-nr1-ul">
+									<li>
+										<div class="item-content">
+											<div class="item-inner">
+												<div class="item-title label">绑定邮箱</div>
+												<div class="item-input">
+													<input type="text" placeholder="请输入您需要绑定的邮箱" value="">
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-inner">
+												<div class="item-title label">邮件验证码</div>
+												<div class="item-input">
+													<input type="text" placeholder="请输入邮件验证码">
+												</div>
+												<div class="item-title label">
+													<a class="btn yzm">获取验证码</a>
+												</div>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</form>
+
+						</div>
+
+						<div class="wy15-nr2">
+							<a class="btn" id="email_open">下一步</a>
+						</div>
+						<h5 class="wy15-h5">小贴士：邮箱绑定成功可得10积分。</h5>
+					</form>
+
+					<!-- 成功-->
+					<div id="light" class="gm-white_content">
+						<div class="gm_white_top">
+							<span>绑定成功</span>
+							<a id="yx_close"><img src="images/fx-cancel.png"></a>
+						</div>
+						<div class="gm_white_nei">
+
+							<h5 class="mb2">绑定邮箱成功，系统赠送10积分。</h5>
+							<h5 class="mb2"><a class="button button-big4 " href="#">查看积分</a></h5>
+
+						</div>
+					</div>
+					<div id="fade" class="gm_black_overlay"></div>
+					<!-- 成功-->
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "绑定邮箱";
+			json["leftViewImg"] = "goback";
+
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+			$("#email_open").on('click', function() {
+				$("#light").css('display', 'block');
+				$("#fade").css('display', 'block');
+
+			});
+			$("#yx_close").on('click', function() {
+				$("#light").css('display', 'none');
+				$("#fade").css('display', 'none');
+
+			});
+		</script>
+
+	</body>
+
+</html>

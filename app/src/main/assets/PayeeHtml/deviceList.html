@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>设备列表</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">  
+	<meta http-equiv="x-rim-auto-match" content="none">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+	.mui-table-view {
+		/* margin-top: 8px; */
+	}
+
+
+
+	.mui-navigate-right {
+		padding-bottom: .5rem;
+	}
+
+	.mui-table-view.list-imgLeft img {
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-top: .1875rem;
+	}
+
+	.mui-table-view.list-imgLeft span {
+		vertical-align: top;
+		/* margin-top: .4375rem; */
+		display: inline-block;
+	}
+
+	.mui-table-view-cell {
+		padding: 18px 15px;
+	}
+
+	.mui-table-view.list-imgLeft .mui-navigate-right {
+		padding: .375rem 0 .3125rem .9375rem;
+	}
+	
+	
+	.login {
+	width: 100%;
+	padding: 0 8%;
+	box-sizing: border-box;
+	overflow: auto;
+	margin-top: 1.25rem;
+	position: absolute; 
+	top: 80%; 
+	bottom: 50px; 
+	left: 0px;
+}
+
+.login button {
+	width: 100%;
+	padding: .5875rem 0;
+	border: none;
+	outline: none;
+	border-radius: .3125rem;
+	-webkit-border-radius: .3125rem;
+	background: #dc2d34;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.box{ background-color: #FFFFFF; padding: 15px; border-radius: 5px; margin-bottom: 0;}
+.box .title{border-bottom:1px dotted #ccc;display: flex;flex-direction: row; padding-bottom: 10px;}
+.box .title .l{flex: 1; justify-content: flex-start;display: flex;align-items:center;}
+.box .title .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;}
+
+.box .cont{display: flex;flex-direction:row; margin-top:3px;}
+.box .cont .l{flex: 0.5; justify-content: flex-start;display: flex;align-items:center; color: #999; font-size: 14px;}
+.box .cont .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;font-size: 14px;}
+</style>
+
+<body>
+	<div class="mui-content">
+
+		 <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll" id="indextable">
+						
+						 
+					</div>
+					
+					
+		 
+		 </div>
+	</div>
+	<script src="js/mui.min.js"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script type="text/javascript">
+	var pageNum=1;
+    mui.ready(function () {
+    	
+        requestDataAboutReady();
+        init_title();
+    });
+
+    mui.init({
+        pullRefresh: {
+            container: '#pullrefresh',
+            down: {
+                callback: pulldownRefresh
+            },
+            up: {
+                contentrefresh: '正在加载...',
+                callback: pullupRefresh
+            }
+        }
+    });
+    
+    function requestDataAboutReady(){
+		var json =requestJson(20);
+		json["page"]=pageNum;
+		json["rows"]="10";
+		var jsonstr = JSON.stringify(json);
+		         //   	alert(1);
+
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+    }
+    
+    function return_action(response) {
+    	
+   		mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+	//	mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+		var indexTable = document.getElementById('indextable');
+		if(!response["success"]) {
+			tokenAction(response);
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				/* 清空列表 */
+				indexTable.innerHTML="";
+				
+				set("userPhone", "");
+				set("tocken", "");
+				set("merName","");
+				set("ds_time","");
+				set("de_time","");
+				return;
+			}
+
+    		var totalnum = response["list"];
+    		
+    		var btnS ="";
+    		if(totalnum != null && totalnum instanceof Array){
+    			if (pageNum==1) {
+    				indexTable.innerHTML="";
+    			}
+  
+    			for(var i = 0; i < totalnum.length; i++) {
+    				var data=totalnum[i];
+    				//新增待审核
+    				if(data["isHandle"]== "1" && data["equipmentState"] =="1" && data["btnStatus"] == "1"){
+    					btnS = '<button type="button" id= '+data["id"]+' class="mui-btn mui-btn-danger newBack" style="margin-bottom: 0; padding: 5px 20px; margin-left: 10px;">驳回</button>'
+    						  +'<button type="button" id= '+data["id"]+' class="mui-btn mui-btn-success newAgreen" style="margin-bottom: 0; padding: 5px 20px; margin-left: 10px;">同意</button>';
+    				} 
+    				//变更待审核
+    				else if(data["isHandle"]=="1" && (data["equipmentState"] == "2" ||  data["equipmentState"] == "3" ||  data["equipmentState"] == "4") && data["btnStatus"] == "1"){
+    					btnS = '<button type="button" id= '+data["id"]+' class="mui-btn mui-btn-success audis" style="margin-bottom: 0; padding: 5px 20px; margin-left: 10px;">变更待审核</button>';
+    				} 
+    				//变更
+    				else if(data["isHandle"] == "0" && (data["equipmentState"] =="2" ||  data["equipmentState"] =="3" || data["equipmentState"] =="4") && data["btnStatus"] =="0"){
+    					
+    					btnS = '<button type="button" id= '+data["id"]+' class="mui-btn change" style="margin-bottom: 0;padding: 5px 20px; margin-left: 10px;">变更</button>';
+    				}else{
+    					 btnS = '';
+    				}
+    				//无审核
+    				var div = document.createElement('div');
+				div.innerHTML = 
+					'<div class="mui-content-padded box" id="'+data["id"]+'">'
+							+'<div class="title" id="'+data["id"]+'">'
+								+'<div class="l"><h4>'+data["equipmentName"]+'</h4></div>'
+								+'<div class="r"><span class="mui-badge mui-badge-success">'+data["equipmentStateName"]+'</span></div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">设备运行状态</div>'
+								+'<div class="r">'+data["runningStateName"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">终端号</div>'
+								+'<div class="r">'+data["spdbNo"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">设备品牌</div>'
+								+'<div class="r">'+data["equipmentBrand"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">设备型号</div>'
+								+'<div class="r">'+data["equipmentNo"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">运维机构</div>'
+								+'<div class="r">'+data["emOrgName"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">网点</div>'
+								+'<div class="r">'+data["dotOrgName"]+'</div>'
+							+'</div>'
+							+'<div class="cont">'
+								+'<div class="l">设备地址</div>'
+								+'<div class="r">'+data["address"]+'</div>'
+							+'</div>'
+							+'<div class="cont" style="margin-top: 10px;">'
+								+'<div class="r btnStatus">'
+									+btnS
+								+'</div>'
+							+'</div>'
+						+'</div>'
+				indexTable.appendChild(div);
+    			}
+    		}
+    		/*变更*/
+			$('.change').on("tap",function(){
+				
+				  var _id = this.getAttribute('id');
+				  var json = "{\"url_html\":\"deviceEdit.html\",\"url_data\":\"?_id="+_id+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+				  window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			
+			});
+			/*变更待审核*/
+			$('.audis').on("tap",function(){
+				  var _id = this.getAttribute('id');
+				  var json = "{\"url_html\":\"deviceVerify.html\",\"url_data\":\"?_id="+_id+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+				  window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			});
+			
+			//驳回
+			$(".newBack").on("tap",function(){
+				var bthis = $(this);
+				var _id = this.getAttribute('id');
+				var btnArray = ['否', '是'];
+				mui.confirm('您确定驳回设备吗?', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								bthis.parents(".box").find(".btnStatus").html(" ");
+								var json =requestJson(33);
+								json["equipmentState"] = 1;
+								json["id"]= _id;
+								json["isHandle"]=1;
+								var jsonstr = JSON.stringify(json);
+								
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_audi_action");
+							} else {
+								return;
+							}
+						})
+			});
+			//同意
+			$(".newAgreen").on("tap",function(){
+				
+				var bthis = $(this);
+				var _id = this.getAttribute('id');
+				var btnArray = ['否', '是'];
+				mui.confirm('您确定同意设备吗?', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								bthis.parents(".box").find(".btnStatus").html(" ");
+								
+								var json =requestJson(33);
+								json["equipmentState"] = 2;
+								json["isHandle"]=0;
+								json["id"]= _id;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_audi_action");
+							} else {
+								return;
+							}
+						})
+			});
+			$(".title").on("tap",function(){
+				  var _id = this.getAttribute('id');
+				  var json = "{\"url_html\":\"deviceAudi.html\",\"url_data\":\"?_id="+_id+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+				  window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			});
+    }
+    
+    function return_audi_action(response){
+    	if(!response["success"]) {
+			tokenAction(response);
+			mui.alert("审批失败");
+			return;
+		}
+    	mui.alert("审批完成");
+    }
+    
+    /*** 下拉刷新具体业务实现*/
+    function pulldownRefresh() {
+    	
+   		pageNum=1;
+   		requestDataAboutReady();
+        setTimeout(function () {
+
+            mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+        }, 1500);
+    }
+    var count = 0;
+
+    /**上拉加载具体业务实现*/
+    function pullupRefresh() {
+   		pageNum++;                                                            
+		requestDataAboutReady();
+        setTimeout(function () {
+
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 1));
+            //参数为true代表没有更多数据了。
+        }, 1500);
+    }
+	function init_title() {
+            	var json = {};
+				json["centerTitle"]="设备列表";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+	}
+	function leftBtnClick() {
+        	window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+    };
+</script>
+</body>
+
+</html>

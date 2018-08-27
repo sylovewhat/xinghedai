@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+
+				<div class="content">
+					<!-- 这里是页面内容区 -->
+					<h5 class="wy15-h5">根据国家监管要求，信和贷已接入厦门国际银行存管系统。
+			用户实名认证，绑定银行卡，投资，充值，提现，转让前须先开通银行存管账户。</h5>
+
+					<div class="list-block wy15-nr1">
+						<ul class="wy15-nr1-ul">
+							<li>
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-form-name"></i></div>
+									<div class="item-inner">
+										<div class="item-title label">真实姓名</div>
+										<div class="item-input">
+											<input type="text" placeholder="请输入真实姓名">
+										</div>
+									</div>
+								</div>
+							</li>
+							<li>
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-form-name"></i></div>
+									<div class="item-inner">
+										<div class="item-title label">身份证号</div>
+										<div class="item-input">
+											<input type="text" placeholder="请输入您的身份证号码">
+										</div>
+									</div>
+								</div>
+							</li>
+
+							<li>
+								<div class="item-content">
+									<div class="item-media"><i class="icon icon-form-name"></i></div>
+									<div class="item-inner">
+										<div class="item-title label">银行卡号</div>
+										<div class="item-input">
+											<input type="text" placeholder="请输入您的银行卡账号">
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div class=" wy15-nr2">
+						<a class="btn" onclick=gotoNextHtml("uc_bank_cg2.html");>下一步</a>
+					</div>
+
+					<!-- 推荐银行 -->
+					<div class="list-block5">
+
+						<div class="tj_bank">
+							<ul>
+								<li class="bot">
+									<div class="fl fz75">
+										推荐银行
+									</div>
+
+									<a class="fr fz65 co9" href="uc_limit.html">
+										<span>更多</span> <i class="icon icon-right"></i>
+									</a>
+								</li>
+								<li class="bot">
+									<div class="bank fz75">
+										<i><img class="img-responsive block" src="images/bank/bank1.png"></i>
+										<span class="mt">工商银行</span>
+									</div>
+
+									<div class="bank">
+										<h5 class="co9 fz7">单笔限额<span class="co3 ml_5">50,000.0</span></h5>
+										<h5 class="co9 fz7">单日限额<span class="co3 ml_5">200,000.0</span></h5>
+									</div>
+								</li>
+
+								<li class="bot">
+									<div class="bank fz75">
+										<i><img class="img-responsive block" src="images/bank/bank2.png"></i>
+										<span class="mt">建设银行</span>
+									</div>
+
+									<div class="bank">
+										<h5 class="co9 fz7">单笔限额<span class="co3 ml_5">200,000.0</span></h5>
+										<h5 class="co9 fz7">单日限额<span class="co3 ml_5">450,000.0</span></h5>
+									</div>
+								</li>
+
+								<li class="bot">
+									<div class="bank fz75">
+										<i><img class="img-responsive block" src="images/bank/bank4.png"></i>
+										<span class="mt">中国银行</span>
+									</div>
+
+									<div class="bank">
+										<h5 class="co9 fz7">单笔限额<span class="co3 ml_5">50,000.0</span></h5>
+										<h5 class="co9 fz7">单日限额<span class="co3 ml_5">430,000.0</span></h5>
+									</div>
+								</li>
+
+								<li class="bot">
+									<div class="bank fz75">
+										<i><img class="img-responsive block" src="images/bank/bank5.png"></i>
+										<span class="mt">交通银行</span>
+									</div>
+
+									<div class="bank">
+										<h5 class="co9 fz7">单笔限额<span class="co3 ml_5">20,000.0</span></h5>
+										<h5 class="co9 fz7">单日限额<span class="co3 ml_5">500,000.0</span></h5>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<!-- 推荐银行 -->
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "开通银行存管账户";
+			json["leftViewImg"] = "goback";
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

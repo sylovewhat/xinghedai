@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>报修详情</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/ystep.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+	</head>
+	<style>
+		.mui-table-view {
+			/* margin-top: 8px; */
+		}
+		
+		.mui-navigate-right {
+			padding-bottom: .5rem;
+		}
+		
+		.mui-table-view.list-imgLeft img {
+			width: 1.75rem;
+			height: 1.75rem;
+			margin-top: .1875rem;
+		}
+		
+		.mui-table-view.list-imgLeft span {
+			vertical-align: top;
+			/* margin-top: .4375rem; */
+			display: inline-block;
+		}
+		
+		.mui-table-view-cell {
+			padding: 18px 15px;
+		}
+		
+		.mui-table-view.list-imgLeft .mui-navigate-right {
+			padding: .375rem 0 .3125rem .9375rem;
+		}
+		
+		.login {
+			width: 100%;
+			padding: 0 8%;
+			box-sizing: border-box;
+			overflow: auto;
+			margin-top: 1.25rem;
+			position: absolute;
+			top: 80%;
+			bottom: 50px;
+			left: 0px;
+		}
+		
+		.login button {
+			width: 100%;
+			padding: .5875rem 0;
+			border: none;
+			outline: none;
+			border-radius: .3125rem;
+			-webkit-border-radius: .3125rem;
+			background: #dc2d34;
+			color: #fff;
+			font-size: 1rem;
+		}
+		#starRating .photo span {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 42px;
+    overflow: hidden;
+    margin-right: 30px;
+    cursor: pointer;
+}
+#starRating .photo span:last-child {
+    margin-right: 0px;
+}
+#starRating .photo span .nohigh {
+    position: absolute;
+    width: 44px;
+    height: 42px;
+    top: 0;
+    left: 0;
+    background: url("img/star.png");
+}
+#starRating .photo span .high {
+    position: absolute;
+    width: 44px;
+    height: 42px;
+    top: 0;
+    left: 0;
+    background: url("img/star1.png");
+}
+#starRating .starNum {
+    font-size: 16px;
+    color: #999;
+    margin-top: 15px;
+     text-align: center;
+}
+#starRating .bottoms {
+    height: 54px;
+}
+#starRating .photo {
+    margin-top: 15px; margin-bottom: 15px;
+    display: flex;flex-direction: row;justify-content: center
+}
+#starRating .bottoms a {
+    margin-bottom: 0;
+}
+#starRating .bottoms .garyBtn {
+    margin-right: 57px!important;
+}
+#starRating .bottoms a {
+    width: 130px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 16px;
+    transition: all 0.2s linear;
+    margin: 16px 0 22px;
+    text-align: center;
+    cursor: pointer;
+}
+.garyBtn {
+    margin-right: 60px!important;
+    background-color: #e1e1e1;
+    color: #999999;
+}
+.blueBtn {
+    background-color: #1968b1;
+    color: #fff;
+}
+.blueBtn:hover {
+    background: #0e73d0;
+}
+
+a{color: #333333;}
+
+.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
+				display: block;
+			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+
+				<div style="width: 100%; height: 130px; background: url(img/bg.png); background-size:cover ; border-radius:15px 15px 0 0; color: #fff;justify-content:center;display: flex;align-items:center; flex-direction: column ">
+					<h3 id="zxs">工单申报预览</h3>
+					<div id="zxt">确认信息无误后提交</div>
+				</div>
+
+				<div style="width: 100%; background:#fff; border-bottom:1px dotted #ccc;display: flex; padding: 10px; overflow: hidden;">
+					<div class="ystep1" style="width: 100%; padding-left: 2rem;"></div>
+				</div>
+
+				<div style="width: 100%;  background:#fff; padding: 10px; border-bottom:1px dotted #ccc;">
+					<h4 style=" margin-bottom: 15px; margin-top: 10px;">报修信息</h4>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4; color: #999;">报修人：</div>
+						<div style="flex: 1;" id="repairUserIdName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4; color: #999;">工单号：</div>
+						<div style="flex: 1;" class="no" id="orderCode"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4;  color: #999;">联系电话：</div>
+						<div style="flex: 1;" id="repairUserIdPhone"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4;  color: #999;">报修时间：</div>
+						<div style="flex: 1;" id="repairTime"></div>
+					</div>
+
+				</div>
+
+				<div style="width: 100%;  background:#fff; padding: 10px; border-bottom:1px dotted #ccc;">
+					<h4 style=" margin-bottom: 15px; margin-top: 10px;">设备信息</h4>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4;  color: #999;">设备地址：</div>
+						<div style="flex: 1;" id="repairAddr"></div>
+					</div>
+
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4;  color: #999;">设备名称：</div>
+						<div style="flex: 1;" id="emEquipmentIdName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="flex: 0.4;  color: #999;">设备序号：</div>
+						<div style="flex: 1;" id="equNo"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px; margin-bottom: 10px;">
+						<div style="flex: 0.4;  color: #999;">故障描述：</div>
+						<div style="flex: 1;" id="faultDes"></div>
+					</div>
+					<div id="imgDiv">
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+
+				<div id="emDiv" style="width: 100%;  background:#fff; padding: 10px; border-bottom:1px dotted #ccc;display: block;">
+					
+					<h4 style=" margin-bottom: 15px; margin-top: 10px;">维修信息</h4>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="color: #999;flex: 0.4;">运维厂家：</div>
+						<div style="flex: 1;" id="emOrgIdName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="color: #999;flex: 0.4;">接单人：</div>
+						<div style="flex: 1;" id="ordersUserIdName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="  color: #999;flex: 0.4;">联系电话：</div>
+						<div style="flex: 1;" id="ordersUserIdPhone"></div>
+					</div>
+
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="  color: #999;flex: 0.4;">接单时间：</div>
+						<div style="flex: 1;" id="ordersTime"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px; position: relative;">
+						<div style="color: #999;flex: 0.4;">维修人：</div>
+						<div style="flex: 1;" id="emUserIdName"></div>
+						<div id="transferBtn" style="text-align: right; color: #184186; position: absolute; right: 5px; top: 5px;display: none;">转派<span class="mui-icon mui-icon-arrowright" style="margin-left: 0px;font-size: 16px;"></span></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style="color: #999;flex: 0.4;">联系电话：</div>
+						<div style="flex: 1;" id="emUserIdPhone"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;display: none;" id="partsDiv">
+						<div style="color: #999; flex: 0.4;">故障部件：</div>
+						<div style="flex: 1;" id="partsName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;display: none;" id="repairResultDiv">
+						<div style="color: #999;flex: 0.4;">维修结果：</div>
+						<div style="flex: 1;" id="repairResult"></div>
+					</div>
+					
+					
+					<div style="margin-bottom: 5px; position: relative;flex-direction: row;display: none;" id="parts">
+						<div style="color: #999;flex: 0.4; flex-direction: row; width: 28%;float: left;">故障部件：</div>
+						<div style="flex: 1; flex-direction: row;width: 72%; float: left;">
+							 <span id="partsSpan" style=""></span>
+							<span style="display: none;" id="partsId"></span> 
+						</div>
+						 <div style="text-align: right; color: #184186; position: absolute; right: 5px; top: 1px;">
+							选择部件<span class="mui-icon mui-icon-arrowright" style="margin-left: 0px;font-size: 16px;"></span>
+						</div> 
+					</div>
+					
+					
+					<div style="display: flex;margin-bottom: 5px;display: none;" id="repairResultTaDiv">
+						<div style="color: #999;flex: 0.4;">维修结果：</div>
+						<div style="flex: 1; margin-top: 10px;">
+							<textarea id='repairResultTa' style="margin-bottom: 0;" class="mui-input-clear question" placeholder="请详细描述维修结果..."></textarea>
+						</div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				
+				
+				<div id="estimateDiv" style="width: 100%;  background:#fff; padding: 10px; border-bottom:1px dotted #ccc;display: none;">
+					<h4 style=" margin-bottom: 15px; margin-top: 10px;">评价信息</h4>
+					<div style="display: flex;margin-bottom: 5px;" id="pic">
+						<div style=" color: #999;flex: 0.4;">满意度：</div>
+						<div style="flex: 1;" id="codeName"></div>
+					</div>
+					<div style="display: flex;margin-bottom: 5px;">
+						<div style=" color: #999;flex: 0.4;">意见：</div>
+						<div style="flex: 1;" id="content"></div>
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+
+				<div style="width: 100%; background:#fff;display: flex; padding: 5px; ">
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="ordersBtn" style="margin-bottom: 0;margin: 5px;display: none;">派单</button>
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="arrialBtn" style="margin-bottom: 0;margin: 5px;display: none;">到达现场</button>
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="repairBtn" style="margin-bottom: 0;margin: 5px;display:none">维修完成</button>
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="confirmBtn" style="margin-bottom: 0;margin: 5px;display:none">确认到达</button>
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="estimateBtn" style="margin-bottom: 0;margin: 5px;display: none;">评价</button>
+				</div>
+
+			</div>
+
+		</div>
+		
+		
+		
+		
+		
+		<div id="picture" class="mui-popover mui-popover-action mui-popover-bottom" style="background: #FFFFFF; padding: 20px; z-index: 999;">
+			<h4 style="text-align: center;">评价</h4>
+			<div id="starRating">
+				<p class="starNum">请选择</p>
+			    <p class="photo">
+			        <span><i class="high"></i><i class="nohigh"></i></span>
+			        <span><i class="high"></i><i class="nohigh"></i></span>
+			        <span><i class="high"></i><i class="nohigh"></i></span>
+			    </p>
+			    <textarea id='zxcontent' style="margin-bottom: 0; display: none;"  placeholder="请详细描述您的问题和意见..." ></textarea>
+			    <div class="bottoms">
+			        <a class="garyBtn cancleStar">取消</a><a class="blueBtn sureStar">确认</a>
+			    </div>
+			</div>
+		</div>
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script src="js/init.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/ystep.js"></script>
+		
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/mui.zoom.js"></script>
+		<script src="js/mui.previewimage.js"></script>
+		<script type="text/javascript">
+			mui.previewImage();
+    		var _id="";
+    		var _type="";
+    		var userPicker;
+    		var partsPicker;
+    		var partsResult;
+    		var partsId;
+    		
+    		var orderStatus = "";
+    		
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					init_title();
+		            _id = GetQueryString('_id');
+		             _type = GetQueryString('_type');
+		            requestDataAboutReady();
+		            
+		            if(_type=="1"){
+						//禁止ios该页面侧滑
+						window.APPJS.unifyClassMethod("HtmlUpdateClass", "stopGesture", "", "");
+						
+					}
+					
+		             //普通示例
+					userPicker = new $.PopPicker();
+					partsPicker = new $.PopPicker();
+					
+					//普通示222222例
+					
+					partsResult = doc.getElementById('partsSpan');
+					partsId = doc.getElementById('partsId');
+					
+					document.getElementById("parts").addEventListener('tap',function(event){
+						var json = requestJson(23);
+						json["orderId"] = _id; 
+						var jsonstr = JSON.stringify(json);
+						window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_parts_action");
+					},false);
+					 
+					
+					doc.getElementById('ordersBtn').addEventListener('tap', function(event) {
+						/*userPicker.show(function(items) {
+							//userResult.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});*/
+						var json =requestJson(21);
+						json["orderId"]= _id;
+						var jsonstr = JSON.stringify(json);
+						window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_emuser_action");
+					}, false);
+					
+					document.getElementById("transferBtn").addEventListener('tap', function(event) {
+						/*userPicker.show(function(items) {
+							//userResult.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
+						});*/
+						var json =requestJson(21);
+						json["orderId"]= _id;
+						var jsonstr = JSON.stringify(json);
+						window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_emuser_action");
+					}, false);
+					
+					document.getElementById("arrialBtn").addEventListener('tap',function(event){
+						var btnArray = ['否', '是'];
+						mui.confirm('您确定已到维修现场吗?', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								var json =requestJson(22);
+								json["fn"] = 3;
+								json["orderId"]= _id;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+							} else {
+								
+							}
+						})
+						
+					},false);
+					document.getElementById("confirmBtn").addEventListener('tap',function(event){
+						var btnArray = ['否', '是'];
+						mui.confirm('您确定维修人员已到现场吗?', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								var json =requestJson(22);
+								json["fn"] = 4;
+								json["orderId"]= _id;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+							} else {
+								
+							}
+						})
+						
+					},false);
+					
+					document.getElementById("repairBtn").addEventListener('tap',function(event){
+						
+						if(partsId.innerText == ''){
+							mui.alert('请选择故障部件', '提示', function() {
+							
+							});
+							return;
+						}
+						
+						if(document.getElementById("repairResultTa").value == ''){
+							mui.alert('请填写维修结果', '提示', function() {
+							
+							});
+							return;
+						}
+						
+						var btnArray = ['否', '是'];
+						mui.confirm('您确定已维修完成吗?', '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								var json =requestJson(22);
+								json["fn"] = 5;
+								json["orderId"]= _id;
+								json["repairResult"] = document.getElementById("repairResultTa").value;
+								json["equParts"] = partsId.innerText;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+							} else {
+								
+							}
+						})
+					},false);
+					
+					document.getElementById('estimateBtn').addEventListener('tap', function() {
+						mui('#picture').popover('toggle');
+					});
+					
+				});
+				
+			})(mui, document);
+			
+			function return_parts_action(response){
+				if(!response["success"]) {
+					tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+	
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					return;
+				}
+				partsPicker.setData(response["list"]);
+				partsPicker.show(function(items) {
+					partsResult.innerText = items[0].text;
+					partsId.innerText = items[0].value;
+					
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+				});
+			}
+			
+			function return_emuser_action(response){
+				if(!response["success"]) {
+					tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+	
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					return;
+				}
+				userPicker.setData(response["list"]);
+				userPicker.show(function(items) {
+					//userResult.innerText = items[0].text;
+					//返回 false 可以阻止选择框的关闭
+					//return false;
+					
+					var btnArray = ['否', '是'];
+					if(orderStatus == "1"){
+						mui.confirm('确定派发工单给'+items[0].text+"?", '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								var json =requestJson(22);
+								json["fn"] = 1;
+								json["orderId"]= _id;
+								json["emUserId"] = items[0].value;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+							} else {
+								
+							}
+						});
+					}else {
+						mui.confirm('确定转派工单给'+items[0].text+"?", '提示', btnArray, function(e) {
+							if (e.index == 1) {
+								var json =requestJson(22);
+								json["fn"] = 2;
+								json["orderId"]= _id;
+								json["emUserId"] = items[0].value;
+								var jsonstr = JSON.stringify(json);
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+							} else {
+								
+							}
+						});
+					}
+				});
+				
+			}
+			
+			function return_dealOrder_action(response){
+				if(!response["success"]) {
+					tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+	
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					return;
+				}
+				mui.alert(response["msg"], '提示', function() {
+					history.go(0);
+				});
+			}
+			
+		    function requestDataAboutReady(){
+				var json =requestJson(5);
+				//json["id"]=_id;
+				//json["userId"] = get("userId");
+				json["orderId"]= _id;
+				var jsonstr = JSON.stringify(json);
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+		    }
+		    
+		    function return_action(response) {
+		   		if(!response["success"]) {
+		   			tokenAction(response); 
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+	
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					return;
+				}
+		   		//订单详情
+		   		for (var key in response["order"]) {
+		   			if (key=="id") {
+		   				continue;
+		   			}
+		   			var key_div=document.getElementById(key);
+		   			if (key_div!=null) {
+		   				key_div.innerHTML=response["order"][key];
+		   			}
+		   		}
+		   		
+		   		orderStatus = response["order"]["orderStatus"];
+		   		
+		   		var imgDivContent = '';
+		   		
+		   		for(var i = 0 ; i < response["imgs"].length; i++){
+		   			imgDivContent += '<div style="width: 65px; height: 65px; float: left; margin-right: 10px; margin-bottom: 10px;"><img src="'+response["imgs"][i]+'" width="65" height="65" data-preview-src="" data-preview-group="1"></div>';
+		   		}
+		   		
+		   		document.getElementById("imgDiv").innerHTML = imgDivContent;
+		   		
+		   		$(".ystep1").loadStep({
+					//ystep的外观大小
+					//可选值：small,large
+					size: "small",
+					//ystep配色方案
+					//可选值：green,blue
+					color: "green",
+					//ystep中包含的步骤
+					steps: [{
+						//步骤名称
+						title: "已报修",
+						//步骤内容(鼠标移动到本步骤节点时，会提示该内容)
+						content: response["order"]["repairTime"]
+					}, {
+						title: "已接单",
+						content: response["order"]["ordersTime"] == "" ? "未完成" : response["order"]["ordersTime"]
+					}, {
+						title: "维修中",
+						content: response["order"]["confirmTime"] == "" ? "未完成" : response["order"]["confirmTime"]
+					}, {
+						title: "待评价",
+						content: response["order"]["finishTime"] == "" ? "未完成" : response["order"]["finishTime"]
+					}, {
+						title: "已完成",
+						content: response["order"]["commentTime"] == "" ? "未完成" : response["order"]["commentTime"]
+					}]
+				});
+				
+				if(response["order"]["orderStatus"] != "1"){
+					document.getElementById("emDiv").style.display = "block";
+				}
+				
+				if(response["order"]["orderStatus"] == "1"){
+					document.getElementById("zxs").innerHTML = '设备已报修';
+					document.getElementById("zxt").innerHTML = '等待维修人员接单'
+					$(".ystep1").setStep(1);
+					if(response["role"] == "emManager"){
+						document.getElementById("ordersBtn").style.display = "block";
+					}
+				}else if(response["order"]["orderStatus"] == "2"){
+					document.getElementById("zxs").innerHTML = '维修人员已经接单';
+					document.getElementById("zxt").innerHTML = '等待维修人员到场维修'
+					$(".ystep1").setStep(2);
+					if(response["isEmUser"] == "1"){
+						if(response["isArrival"] == "0"){
+							document.getElementById("arrialBtn").style.display = "block";
+							document.getElementById("repairBtn").style.display = "block";
+							document.getElementById("repairResultTaDiv").style.display = "block";
+							document.getElementById("parts").style.display = "flex";
+						}
+					}
+					if(response["role"] == "emManager"){
+						document.getElementById("transferBtn").style.display = "block";
+					}
+					if(response["isCreator"] == "1" && response["isArrival"] == "1"){
+						document.getElementById("confirmBtn").style.display = "block";
+					}
+				}else if(response["order"]["orderStatus"] == "3"){
+					document.getElementById("zxs").innerHTML = '设备正在维修中';
+					document.getElementById("zxt").innerHTML = '等待设备维修完成'
+					$(".ystep1").setStep(3);
+					if(response["isEmUser"] == "1"){
+						document.getElementById("repairBtn").style.display = "block";
+						document.getElementById("repairResultTaDiv").style.display = "block";
+						document.getElementById("parts").style.display = "flex";
+					}
+					if(response["role"] == "emManager"){
+						document.getElementById("transferBtn").style.display = "block";
+					}
+				}else if(response["order"]["orderStatus"] == "4"){
+					document.getElementById("zxs").innerHTML = '设备维修完成';
+					document.getElementById("zxt").innerHTML = '等待评价'
+					$(".ystep1").setStep(4);
+					document.getElementById("repairResultDiv").style.display = "block";
+					document.getElementById("partsDiv").style.display = "block";
+					
+					if(response["isCreator"] == "1"){
+						document.getElementById("estimateBtn").style.display = "block";
+					}
+				}else if(response["order"]["orderStatus"] == "5"){
+					document.getElementById("zxs").innerHTML = '评价完成';
+					document.getElementById("zxt").innerHTML = '谢谢您使用本系统'
+					$(".ystep1").setStep(5);
+					document.getElementById("repairResultDiv").style.display = "block";
+					document.getElementById("partsDiv").style.display = "block";
+					document.getElementById("estimateDiv").style.display = "block";
+				}
+		   		
+		   		/*
+		   		var indexTable = document.getElementById('allSignList');
+		   		//评价详情
+		   		var totalnum = response["recordList"];
+		   		if(totalnum != null && totalnum instanceof Array){
+		   			indexTable.innerHTML="";
+		   			for(var i = 0; i < totalnum.length; i++) {
+						var data = totalnum[i];
+						var li = document.createElement('li');
+						li.innerHTML = '<li class="mui-table-view-cell mui-media"><a href="javascript:;"><div class="mui-card-content"><span style="font-size:15px;display:block;word-break:normal; width:auto; display:block; white-space:pre-wrap;word-wrap : break-word ;overflow: hidden ; ">' + data['content'] + '</span><div style="float:right;padding: 10px 15px;color:#666"><span style="font-size:13px;color:#666;float:left;">' + data['codeName'] + '</span><img src="./img/detialReback.png"></div></div></a></li>';
+						indexTable.appendChild(li);
+					}
+		   			
+		   		}else{
+		   			document.getElementById('rebakDiv').style.display='none';
+		   		}
+		   		
+		   		if(totalnum == 0){
+		   			document.getElementById('rebakDiv').style.display='none';
+		   		}*/
+		   }
+			
+			var $this = $(".no");
+			var v = $this.html();
+  			/\S{5}/.test(v) && $this.html(v.replace(/\s/g, '').replace(/(.{4})/g, "$1 "));
+			
+			function init_title() {
+
+				var json = {};
+				json["centerTitle"]="工单详情";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+				jsonpp["color"]="#000000";
+				window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+				
+			}
+			
+			
+			function keyBackEvent(){
+				if(_type=="1"){
+					//回退
+					var json = {};
+					json["url_html"]="index.html";
+					json["viewHeigh"]="0";
+					json["loadType"]="0";
+					window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "");
+			
+				}else{
+					window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+				}
+			}
+			
+			
+			function leftBtnClick() {
+				if(_type=="1"){
+					//回退
+					var json = {};
+					json["url_html"]="index.html";
+					json["viewHeigh"]="0";
+					json["loadType"]="0";
+					window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "");
+			
+				}else{
+					window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+				}
+			};
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 var starRating = 0;
+        $('.photo span').on('mouseenter',function () {
+            var index = $(this).index()+1;
+            $(this).prevAll().find('.high').css('z-index',1)
+            $(this).find('.high').css('z-index',1)
+            $(this).nextAll().find('.high').css('z-index',0)
+            $('.starNum').html(getno(index))
+        })
+        $('.photo span').on('click',function () {
+            var index = $(this).index()+1;
+            $(this).prevAll().find('.high').css('z-index',1)
+            $(this).find('.high').css('z-index',1)
+            starRating = index;
+            $('.starNum').html(getno(starRating));
+            //alert('评分：'+(starRating.toFixed(1)+'分'))
+        })
+        //取消评分
+        $('.cancleStar').on('tap',function () {
+        	
+        	mui('#picture').popover('hide');
+            //starRating = 0;
+            //$('.photo span').find('.high').css('z-index',0);
+            //$('.starNum').html(starRating.toFixed(1)+'分');
+        })
+        //确定评分
+        var code = 0;
+        $('.sureStar').on('tap',function () {
+        	
+        	
+            if(code==0) {
+                mui.alert('请选择满意度', '提示', function() {});
+                return;
+            }
+
+			if(code == 3 && document.getElementById("zxcontent").value == ''){
+                mui.alert('请填写原因', '提示', function() {});
+                return;
+            }
+			
+            
+			var json =requestJson(22);
+			json["fn"] = 6;
+			json["orderId"]= _id;
+			json["code"] = code;
+			if(code == 3){
+				json["content"] = document.getElementById("zxcontent").value;
+			}else {
+				json["content"] = '';
+			}
+			var jsonstr = JSON.stringify(json);
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_dealOrder_action");
+			mui('#picture').popover('hide');
+        })
+        
+        function getno(i){
+        	if(i==1){
+        		$("#zxcontent").show()
+        		code = 3
+        		return '不满意'
+        	}
+        	if(i==2){
+        		$("#zxcontent").hide()
+        		code = 2
+        		return '一般'
+        	}
+        	if(i==3){
+        		$("#zxcontent").hide()
+        		code = 1
+        		return '满意'
+        	}
+        }
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,506 @@
+
+<!doctype html>
+<html lang="en" class="feedback">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>问题反馈</title>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/feedback.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+    <style>
+        .mui-popover {
+                           height: 240px;
+                    }
+
+        .no-header {
+            display: none;
+        }
+
+        .mui-content.without-header {
+            padding-top: 0;
+        }
+        
+        .update {
+				font-style: normal;
+				color: #999999;
+				margin-right: -25px;
+				font-size: 15px
+			}
+			.mui-table-view-cell:after,
+			.mui-table-view:after{background-color: #FFFFFF;}
+			.pdr10{ padding-right: 15px; margin-top: 5px;}
+    </style>
+</head>
+
+<body>
+<div class="mui-content">
+	
+	
+	
+	<p>编辑信息</p>
+	<div class="row mui-input-row">
+		<div class="mui-content-padded" style="margin: 0px;  margin-top: 5px;">
+					<div class="mui-input-row pdr10">
+						<label>终端号：</label>
+						<input type="text" id="spdbNo"  name="spdbNo" placeholder="请输入终端号" style="text-align: right;">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备品牌：</label>
+						<input type="text" id="equipmentBrand" name="equipmentBrand" placeholder="请输入设备品牌" style="text-align: right;">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备型号：</label>
+						<input type="text" id="equipmentModel" name="equipmentModel"  placeholder="请输入设备型号" style="text-align: right;">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备NO：</label>
+						<input type="text" id="equipmentNo" name="equipmentNo" placeholder="请输入设备NO" style="text-align: right;">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备名称：</label>
+						<input type="text" id="equipmentName" name="equipmentName" placeholder="请输入设备名称" style="text-align: right;">
+					</div>
+					<ul class="mui-table-view mui-table-view-chevron" style="position:static;">
+							<li class="mui-table-view-cell" style="position:static; " id='equipmentStateId'>
+								<a href="javascript:void(0)" class="mui-navigate-right">设备状态<i class="mui-pull-right update"  id="equipmentStateTxt">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static; " id='equipmentTypeName'>
+								<a href="javascript:void(0)" class="mui-navigate-right">设备类型<i class="mui-pull-right update"  id="equipmentTypeNameTxt">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="emOrgIds">
+								<a href="javascript:void(0)" class="mui-navigate-right">所属机构<i class="mui-pull-right update" id="emOrgIdsTxt"></i></a>
+							</li>
+						</ul>
+						<div class="mui-input-row pdr10">
+						<label>设备地址：</label>
+						<input type="text" id="address" name="address"  placeholder="请输入设备地址" style="text-align: right;">
+					</div>
+			</div>
+    </div>
+	
+	<input type="hidden" id="equipId" name="equipId" />
+	<input type="hidden" id="equipOrgId" name="equipOrgId" />
+	<input type="hidden" id="equipFirstOrgId" name="equipFirstOrgId" />
+	<input type="hidden" id="equipSecondOrgId" name="equipSecondOrgId" />
+	<input type="hidden" id="equipThirdOrgId" name="equipThirdOrgId" />
+	<input type="hidden" id="equipFourthOrgId" name="equipFourthOrgId" />
+	<input type="hidden" id="equipmentState" name="equipmentState" />
+	
+	<input type="hidden" id="equipmentTypeId" name="equipmentTypeId" />
+	<input type="hidden" id="emOrgId" name="emOrgId" />
+	<input type="hidden" id="dotOrgId" name="dotOrgId" />
+	<p>网点信息:</p>
+	<div class="row mui-input-row">
+       <div class="content">
+							<ul class="mui-table-view mui-table-view-chevron" style="position:static;">
+							<li class="mui-table-view-cell"  style="position:static;" id='firstPicker'>
+								<a href="javascript:void(0)" class="mui-navigate-right">分行<i class="mui-pull-right update" id="equipFirstOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static; " id="sencondPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right">辖区分行<i class="mui-pull-right update" id="equipSecondOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="thirdPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right" >支行<i class="mui-pull-right update" id="equipThirdOrgName">请选择</i></a>
+							</li>
+							<li class="mui-table-view-cell" style="position:static;" id="fourthPicker">
+								<a href="javascript:void(0)" class="mui-navigate-right" >社区支行<i class="mui-pull-right update" id="equipFourthOrgName">请选择</i></a>
+							</li>
+						</ul>
+						</div>
+    </div>
+	
+	
+	
+	
+	
+    
+    
+    
+    
+    <div style="width: 100%; display: flex; z-index: 9; ">
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-block" style="margin: 15px;" id="deviceIndex">提交</button>
+	</div>
+
+<script src="js/mui.min.js"></script>
+<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+<script type="text/javascript">
+	var firstPicker;
+    var sencondPicker ;
+    var thirdPicker ;
+    var fourthPicker ;
+    var equipPicker ;
+    var userPicker;
+    
+    var showFirstPickerButton;
+    var firstResult;
+    var firstResultId;
+    
+    var orgPicker;
+    var statusPicker;
+    
+    var dotList;
+    var postType = 0;
+ 		(function($, doc) {
+ 				$.ready(function() {
+					init_title();
+					init_content();
+				});
+				$.init();
+				
+				userPicker = new $.PopPicker();
+				orgPicker = new $.PopPicker();
+				statusPicker = new $.PopPicker();
+				//一级
+				firstPicker = new $.PopPicker();
+				showFirstPickerButton = doc.getElementById('firstPicker');
+				firstResult = doc.getElementById('equipFirstOrgName');
+				firstResultId = doc.getElementById('equipFirstOrgId');
+				var json =requestJson(19);
+				postType=0;
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "firstSelect");
+				
+				
+				//二级
+				sencondPicker = new $.PopPicker();
+				var showSecondPickerButton = doc.getElementById('sencondPicker');
+				var secondResult = doc.getElementById('equipSecondOrgName');
+				var secondResultId = doc.getElementById('equipSecondOrgId');
+				showSecondPickerButton.addEventListener('tap', function(event) {
+					
+					
+					sencondPicker.show(function(items) {
+						document.getElementById("dotOrgId").value = items[0].value;
+						if(firstResultId.value != items[0].value){
+							//取三级单位
+							secondResult.innerText = items[0].text;
+						    secondResultId.value = items[0].value;
+							equipOrgId.value = items[0].value;
+							
+							thirdResult.innerText = "请选择";
+						    thirdResultId.value = " ";
+						    
+						    fourthResult.innerText = "请选择";
+						    fourthResultId.value = " ";
+						    
+							var json =requestJson(15);
+				        	json["orgId"]=items[0].value;
+							window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "thirdSelect");
+						}else{
+							secondResult.innerText = "请选择";
+						    secondResultId.value = items[0].value;
+							equipOrgId.value = firstResultId.value;
+							
+							thirdResult.innerText = "请选择";
+						    thirdResultId.value = " ";
+						    
+						    fourthResult.innerText = "请选择";
+						    fourthResultId.value = " ";
+						    
+						}
+					
+					});
+				}, false);
+				//三级
+					thirdPicker = new $.PopPicker();
+					var showThirdPickerButton = doc.getElementById('thirdPicker');
+					var thirdResult = doc.getElementById('equipThirdOrgName');
+					var thirdResultId = doc.getElementById('equipThirdOrgId');
+					showThirdPickerButton.addEventListener('tap', function(event) {
+						
+						thirdPicker.show(function(items) {
+							document.getElementById("dotOrgId").value = items[0].value;
+							if(typeof(items[0].value) == "undefined"){
+								
+								return;
+							}
+							if(secondResultId.value != items[0].value){
+								//取四级单位
+								thirdResult.innerText = items[0].text;
+							    thirdResultId.value = items[0].value;
+								equipOrgId.value = items[0].value;
+								
+								var json =requestJson(15);
+					        	json["orgId"]=items[0].value;
+								window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "fourthSelect");
+								
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							}else{
+								thirdResult.innerText = "请选择";
+							    thirdResultId.value = items[0].value;
+								equipOrgId.value = secondResultId.value;
+								
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = " ";
+							    
+							}
+						
+						});
+					}, false);
+					
+					
+					//四级
+					fourthPicker = new $.PopPicker();
+					var showFourthPickerButton = doc.getElementById('fourthPicker');
+					var fourthResult = doc.getElementById('equipFourthOrgName');
+					var fourthResultId = doc.getElementById('equipFourthOrgId');
+					showFourthPickerButton.addEventListener('tap', function(event) {
+						
+						fourthPicker.show(function(items) {
+							document.getElementById("dotOrgId").value = items[0].value;
+							if(typeof(items[0].value) == "undefined"){
+								
+								return;
+							}
+							if(thirdResultId.value != items[0].value){
+								//取四级单位
+								fourthResult.innerText = items[0].text;
+							    fourthResultId.value = items[0].value;
+								equipOrgId.value = items[0].value;
+								
+								
+							}else{
+								fourthResult.innerText = "请选择";
+							    fourthResultId.value = items[0].value;
+								equipOrgId.value = thirdResultId.value;
+								
+							}
+						});
+					}, false);	
+				
+					document.getElementById('deviceIndex').addEventListener('tap', function () {
+								
+						var id = document.getElementById("equipId").value;
+        				var spdbNo = document.getElementById("spdbNo").value;	
+			        	var equipmentBrand = document.getElementById("equipmentBrand").value;
+			        	var equipmentModel = document.getElementById("equipmentModel").value;
+			        	var equipmentNo = document.getElementById("equipmentNo").value;
+			        	var equipmentName = document.getElementById("equipmentName").value;
+			        	var equipmentTypeId = document.getElementById("equipmentTypeId").value;
+			        	var emOrgId =  document.getElementById("emOrgId").value;
+			        	var dotOrgId =  document.getElementById("dotOrgId").value; 
+			        	var address =  document.getElementById("address").value; 
+			        	var equipmentState = document.getElementById("equipmentState").value;
+			      		var json =requestJson(25);
+
+			        	json["id"]=id;
+			        	json["spdbNo"]=spdbNo;
+			        	json["equipmentBrand"]=equipmentBrand;
+			        	json["equipmentModel"]=equipmentModel;
+			        	json["equipmentNo"]=equipmentNo;
+			        	json["equipmentName"]=equipmentName;
+			        	json["equipmentTypeId"]=equipmentTypeId;
+			        	json["emOrgId"]=emOrgId;
+			        	json["dotOrgId"]=dotOrgId;
+			        	json["address"] = address;
+						json["equipmentState"]=equipmentState;
+
+						window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "back_action");
+						
+						
+				 		 
+						return;
+						
+					});
+				
+			})(mui, document);
+			
+			function back_action(response){
+				if(!response["success"]){
+				//	tokenAction(response);
+				}
+				 var equipChange = response["equipChange"]; 
+				 var json = "{\"url_html\":\"deviceEditSuccess.html\",\"url_data\":\"?equipChange="+equipChange+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+				 window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			}
+			
+			function init_title() {
+            	
+            	var json = {};
+				json["centerTitle"]="设备变更";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+			}
+			
+			function init_content(){
+				var _id = GetQueryString('_id');
+				var json =requestJson(24); 
+				json["id"]=_id;
+				var jsonstr = JSON.stringify(json);
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+			}
+			 
+			function return_action(response) {
+				if(!response["success"]) {
+				//	tokenAction(response);
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+	
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					/* 清空列表 */
+					indexTable.innerHTML="";
+					
+					set("userPhone", "");
+					set("tocken", "");
+					set("merName","");
+					set("ds_time","");
+					set("de_time","");
+					return;
+				}  
+				dotList = response["dotlist"];
+				var types = response["dotOrgType"];
+				var vo = response["vo"];
+				$("#equipId").val(vo.id);
+				$("#spdbNo").val(vo.spdbNo);
+				$("#equipmentBrand").val(vo.equipmentBrand);
+				$("#equipmentModel").val(vo.equipmentModel);
+				$("#equipmentNo").val(vo.equipmentNo);
+				$("#equipmentName").val(vo.equipmentName);
+				$("#address").val(vo.address);
+				$("#equipmentTypeId").val(vo.equipmentTypeId);
+				$("#emOrgId").val(vo.emOrgId);
+				$("#dotOrgId").val(vo.dotOrgId);
+				$("#equipmentState").val(vo.equipmentState);
+				
+				
+				//所属机构
+				orgPicker.setData(response["orglist"]);
+				var showPickerButton = document.getElementById('emOrgIds');
+				var emOrgIdsTxt = document.getElementById('emOrgIdsTxt');
+				emOrgIdsTxt.innerText=vo.emOrgName;
+				showPickerButton.addEventListener('tap', function(event) {
+					orgPicker.show(function(items) {
+						emOrgIdsTxt.innerText = items[0].text;
+						document.getElementById("emOrgId").value = items[0].value;
+					});
+				}, false);
+				//设备类型
+				userPicker.setData(response["equipTypeList"]);
+				var showUserPickerButton = document.getElementById('equipmentTypeName');
+				var equipmentTypeNameTxt = document.getElementById('equipmentTypeNameTxt');
+				equipmentTypeNameTxt.innerText=vo.equipmentTypeName;
+				showUserPickerButton.addEventListener('tap', function(event) {
+					userPicker.show(function(items) {
+						equipmentTypeNameTxt.innerText = items[0].text;
+						document.getElementById("equipmentTypeId").value = items[0].value;
+					});
+				}, false);
+				//设备状态
+				statusPicker.setData(response["equipStatusList"]);
+				var showStatusPickerButton = document.getElementById('equipmentStateId');
+				var equipmentStatusTxt = document.getElementById('equipmentStateTxt');
+				equipmentStatusTxt.innerText=vo.equipmentStateName;
+				showStatusPickerButton.addEventListener('tap', function(event) {
+					statusPicker.show(function(items) {
+						equipmentStatusTxt.innerText = items[0].text;
+						document.getElementById("equipmentState").value = items[0].value;
+					});
+				}, false);
+			}
+
+			function leftBtnClick() {
+            	window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+        	};
+         
+         
+          function firstSelect(response){
+          	if(!response["success"]) {
+          		//tokenAction(response);
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+					}
+			firstPicker.setData(response["data"]);
+        	
+        	equipOrgId.value = response["data"][0].value;
+			firstResult.innerText = response["data"][0].text;
+			firstResultId.value = response["data"][0].value;
+        	
+        	var json =requestJson(15);
+        	json["orgId"]=response["data"][0].value;
+        	window.APPJS.unifyClassMethod("FuctionClass", "post_action", JSON.stringify(json), "secondSelect");
+        	
+		}
+        
+        function secondSelect(response){
+        	
+        	if(!response["success"]) {
+        	//	tokenAction(response);
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+        	
+        	for (var i=0;i<dotList.length;i++){
+				var name = dotList[i].orgName;
+				if(i==0){
+					var firstTxt = document.getElementById('equipFirstOrgName');
+				    firstTxt.innerText=name;
+				}else if(i==1){
+					var secondTxt = document.getElementById('equipSecondOrgName');
+				    secondTxt.innerText=name;
+				}else if(i==2){
+					var thirdTxt = document.getElementById('equipThirdOrgName');
+				    thirdTxt.innerText=name;
+				}else{
+					var fourTxt = document.getElementById('equipFourthOrgName');
+				    fourTxt.innerText=name;
+				}
+			}
+			sencondPicker.setData(response["data"]);				
+		}
+        
+         function thirdSelect(response){
+        	if(!response["success"]) {
+        	//	tokenAction(response);
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+			thirdPicker.setData(response["data"]);
+			
+		}
+         
+        function fourthSelect(response){
+        	if(!response["success"]) {
+        		//tokenAction(response);
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					return;
+			}
+			fourthPicker.setData(response["data"]);
+		}
+</script>
+</body>
+
+</html>

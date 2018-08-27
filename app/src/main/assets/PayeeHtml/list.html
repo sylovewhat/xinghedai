@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>历史工单</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+	.mui-table-view {
+		/* margin-top: 8px; */
+	}
+
+
+
+	.mui-navigate-right {
+		padding-bottom: .5rem;
+	}
+
+	.mui-table-view.list-imgLeft img {
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-top: .1875rem;
+	}
+
+	.mui-table-view.list-imgLeft span {
+		vertical-align: top;
+		/* margin-top: .4375rem; */
+		display: inline-block;
+	}
+
+	.mui-table-view-cell {
+		padding: 18px 15px;
+	}
+
+	.mui-table-view.list-imgLeft .mui-navigate-right {
+		padding: .375rem 0 .3125rem .9375rem;
+	}
+	
+	
+	.login {
+	width: 100%;
+	padding: 0 8%;
+	box-sizing: border-box;
+	overflow: auto;
+	margin-top: 1.25rem;
+	position: absolute; 
+	top: 80%; 
+	bottom: 50px; 
+	left: 0px;
+}
+
+.login button {
+	width: 100%;
+	padding: .5875rem 0;
+	border: none;
+	outline: none;
+	border-radius: .3125rem;
+	-webkit-border-radius: .3125rem;
+	background: #dc2d34;
+	color: #fff;
+	font-size: 1rem;
+}
+
+.box{ background-color: #FFFFFF; padding: 15px; border-radius: 5px; margin-bottom: 15px;}
+.box .title{border-bottom:1px dotted #ccc;display: flex;flex-direction: row; padding-bottom: 10px;}
+.box .title .l{flex: 1; justify-content: flex-start;display: flex;align-items:center;}
+.box .title .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;}
+
+.box .cont{display: flex;flex-direction:row; margin-top: 10px;}
+.box .cont .l{flex: 0.5; justify-content: flex-start;display: flex;align-items:center; color: #999;}
+.box .cont .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;}
+</style>
+
+<body>
+	<div class="mui-content">
+
+		 <div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll" id="indextable">
+					</div>
+		 </div>
+	</div>
+	<script src="js/mui.min.js"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script type="text/javascript">
+	var pageNum=1;
+    mui.ready(function () {
+    	init_title();
+        requestDataAboutReady();
+        
+    });
+
+    mui.init({
+        pullRefresh: {
+            container: '#pullrefresh',
+            down: {
+            	auto: true,//可选,默认false.首次加载自动下拉刷新一次
+     			contentdown : "下拉可以刷新",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+      			contentover : "释放立即刷新",//可选，在释放可刷新状态时，下拉刷新控件上显示的标题内容
+  				contentrefresh : "正在刷新...",//可选，正在刷新状态时，下拉刷新控件上显示的标题内容
+                callback: pulldownRefresh
+            },
+            up: {
+                auto:true,//可选,默认false.自动上拉加载一次
+      			contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+      			contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+                callback: pullupRefresh
+            }
+        }
+    });
+    
+    function requestDataAboutReady(){
+		var json =requestJson(4);
+		json["page"]=pageNum;
+		json["rows"]="10";
+		json["hud_type"]="1";
+		var jsonstr = JSON.stringify(json);
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+    }
+    
+    function return_action(response) {
+   		//mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+		//mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+		var indexTable = document.getElementById('indextable');
+		if(!response["success"]) {
+				tokenAction(response);
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				/* 清空列表 */
+				indexTable.innerHTML="";
+				
+				return;
+			}
+    		var totalnum = response["list"];
+    		var statusStr;
+  
+    		if(totalnum != null && totalnum instanceof Array){
+    			if (pageNum==1) {
+    				indexTable.innerHTML="";
+    			}
+    		
+    			
+    			for(var i = 0; i < totalnum.length; i++) {
+    				var data=totalnum[i];
+    				var div = document.createElement('div');
+    					if(data["orderStatus"]==1){
+							statusStr = '<span class="mui-badge mui-badge-danger">'+data["orderStatusValue"]+'</span>';
+						}else if(data["orderStatus"]==2){
+							statusStr = '<span class="mui-badge mui-badge-warning">'+data["orderStatusValue"]+'</span>';
+						}else if(data["orderStatus"]==3){
+							statusStr = '<span class="mui-badge mui-badge-purple">'+data["orderStatusValue"]+'</span>';
+						}else if(data["orderStatus"]==4){
+							statusStr = '<span class="mui-badge mui-badge-success">'+data["orderStatusValue"]+'</span>';
+						}else if(data["orderStatus"]==5){
+							statusStr = '<span class="mui-badge mui-badge-primary"">'+data["orderStatusValue"]+'</span>';
+						}
+						
+    					if(!isEmpty(data["emUserIdName"])){
+    						if(!isEmpty(data["repairUserIdName"])){
+    							div.innerHTML = 
+								'<div class="mui-content-padded box" id="'+data["id"]+'">'
+									+'<div class="title">'
+										+'<div class="l"><h5>'+data["repairTime"]+'</h5></div>'
+										+'<div class="r">'+statusStr+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">所属机构</div>'
+										+'<div class="r">'+data["dotOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维护单位</div>'
+										+'<div class="r">'+data["emOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维修人</div>'
+										+'<div class="r">'+data["emUserIdName"]+'-'+data["emUserIdPhone"]+'</div>'
+									+'</div>'
+								+'</div>';
+    						}else{
+    							div.innerHTML = 
+								'<div class="mui-content-padded box" id="'+data["id"]+'">'
+									+'<div class="title">'
+										+'<div class="l"><h5>'+data["repairTime"]+'</h5></div>'
+										+'<div class="r">'+statusStr+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">所属机构</div>'
+										+'<div class="r">'+data["dotOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">报修人</div>'
+										+'<div class="r">'+data["repairUserIdName"]+'-'+data["repairUserIdPhone"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维护单位</div>'
+										+'<div class="r">'+data["emOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维修人</div>'
+										+'<div class="r">'+data["emUserIdName"]+'-'+data["emUserIdPhone"]+'</div>'
+									+'</div>'
+								+'</div>';
+    						
+    						}
+    						
+    					}else{
+    						if(!isEmpty(data["repairUserIdName"])){
+    							div.innerHTML = 
+								'<div class="mui-content-padded box" id="'+data["id"]+'">'
+									+'<div class="title">'
+										+'<div class="l"><h5>'+data["repairTime"]+'</h5></div>'
+										+'<div class="r">'+statusStr+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">所属机构</div>'
+										+'<div class="r">'+data["dotOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维护单位</div>'
+										+'<div class="r">'+data["emOrgIdName"]+'</div>'
+									+'</div>'
+								+'</div>';
+    						}else{
+    							div.innerHTML = 
+								'<div class="mui-content-padded box" id="'+data["id"]+'">'
+									+'<div class="title">'
+										+'<div class="l"><h5>'+data["repairTime"]+'</h5></div>'
+										+'<div class="r">'+statusStr+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">所属机构</div>'
+										+'<div class="r">'+data["dotOrgIdName"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">报修人</div>'
+										+'<div class="r">'+data["repairUserIdName"]+'-'+data["repairUserIdPhone"]+'</div>'
+									+'</div>'
+									+'<div class="cont">'
+										+'<div class="l">维护单位</div>'
+										+'<div class="r">'+data["emOrgIdName"]+'</div>'
+									+'</div>'
+								+'</div>';
+    						}
+    						
+    					}
+						
+				indexTable.appendChild(div);
+    			}
+    		}
+    }
+    
+    /* 跳转 */
+	$('.mui-scroll').on("tap", ".box", function() {
+		var _id = this.getAttribute('id');
+		if (_id!="") {
+			var json = {};
+			json["url_html"]="repairView.html";
+			json["viewHeigh"]="0";
+			json["loadType"]="0";
+			json["url_data"]="?_id="+_id;
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "tabBarHidden");
+		}
+	});
+    
+    function init_title() {
+
+		 
+		
+				var json = {};
+				json["centerTitle"]="工单列表";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+		
+		
+	}
+    
+    
+    
+    
+    function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			};
+			
+    /*** 下拉刷新具体业务实现*/
+    function pulldownRefresh() {
+   		pageNum=1;
+   		/* set("ds_time", "");
+		set("de_time", ""); */
+   		requestDataAboutReady();
+        setTimeout(function () {
+            mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+        }, 1500);
+    }
+    
+    var count = 0;
+    /**上拉加载具体业务实现*/
+    function pullupRefresh() {
+   		pageNum++;                                                            
+		requestDataAboutReady();
+        setTimeout(function () {
+
+            mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 1));
+            //参数为true代表没有更多数据了。
+        }, 1500);
+    }
+    
+</script>
+</body>
+
+</html>

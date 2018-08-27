@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="RedTipTextView">
+        <attr name="redTipsVisibility">
+            <enum name="invisible" value="4"></enum>
+            <enum name="visible" value="0"></enum>
+            <enum name="gone" value="8"></enum>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ColorfulProgressBar">  
+        <attr name="reachedColor" format="color"/>  
+        <attr name="unReachedColor" format="color"/>  
+        <attr name="reachedHight" format="dimension"/>  
+        <attr name="unReachedHight" format="dimension"/>  
+        <attr name="progressTextOffset" format="dimension"/>  
+        <attr name="progressTextSize" format="dimension"/>  
+    </declare-styleable>  
+
+</resources>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>用户设置</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+	.mui-table-view {
+		/* margin-top: 8px; */
+	}
+
+
+
+	.mui-navigate-right {
+		padding-bottom: .5rem;
+	}
+
+	.mui-table-view.list-imgLeft img {
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-top: .1875rem;
+	}
+
+	.mui-table-view.list-imgLeft span {
+		vertical-align: top;
+		/* margin-top: .4375rem; */
+		display: inline-block;
+	}
+
+	.mui-table-view-cell {
+		padding: 18px 15px;
+	}
+
+	.mui-table-view.list-imgLeft .mui-navigate-right {
+		padding: .375rem 0 .3125rem .9375rem;
+	}
+	
+	
+	.login {
+	 padding: 20px;
+	box-sizing: border-box;
+	overflow: auto;
+	margin-top: 1.25rem;
+}
+
+.login button {
+	width: 100%;
+	padding: .5875rem 0;
+	border: none;
+	outline: none;
+	border-radius: .3125rem;
+	-webkit-border-radius: .3125rem;
+	background: #dc2d34;
+	color: #fff;
+	font-size: 1rem;
+}
+span{ font-size: 16px;}
+</style>
+
+<body>
+	<div class="mui-content">
+
+		<ul class="mui-table-view list-imgLeft" >
+			<li class="mui-table-view-cell" id="phone">
+				<a class="mui-navigate-right">
+					<span>手机修改</span>
+				</a>
+			</li>
+
+			<li class="mui-table-view-cell" id="email">
+				<a class="mui-navigate-right">
+					<span>邮箱修改</span>
+					<span id="id_update" style="color:red;font-size:0.6rem;float:right;padding-right:2.3rem;display:none;">发现新版本</span>
+				</a>
+			</li>
+
+			<li class="mui-table-view-cell" id="password">
+				<a class="mui-navigate-right">
+					<span>密码修改</span>
+				</a>
+			</li>
+
+		</ul>
+		
+		
+		<div class="login">
+			<button type="submit" id="quitBtn">安全退出</button>
+		</div>
+	</div>
+	<script src="js/mui.min.js"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script type="text/javascript">
+		
+		mui.init();
+		mui.ready(function () {
+			init_title();
+		});
+
+		function init_title() {
+			
+            
+            
+            var json = {};
+			json["centerTitle"]="系统设置";
+			json["leftViewImg"]="left";
+			json["backgroudColor"]=NAVCOLOR;
+			json["centerTitleColor"]="#184186";
+            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+            
+            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+            
+		}
+
+		$('#clear').on("tap", function () {
+			//清空缓存
+			window.APPJS.unifyClassMethod("WebConfigClass", "clearWebCookie", "", "");
+			var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"清除成功\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+		});
+
+		$('#updata').on("tap", function () {
+			/* 获取当前版本信息 */
+			var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"已是最新版本\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+		});
+
+		
+		$('#quitBtn').on("tap", function () {
+			var json = requestJson(9);
+			var jsonstr = JSON.stringify(json);
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+			
+		});
+		
+		function return_action(response){
+			//设置所有用户的isLogin为0 无登录
+			var isLoginJson={};
+			isLoginJson["isLogin"]  = "0";
+			
+			isLoginJson["sqlTableName"] = "user_login";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "updateAll",JSON.stringify(isLoginJson), "");		
+			
+			if(!response["success"]) {
+					/* 弹出提示 */
+					var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+						"\"}";
+					window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+					var json = {};
+					json["url_html"]="login.html";
+					json["viewHeigh"]="0";
+					json["loadType"]="0";
+					window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "");
+			}
+			var getJson = "{\"userCode\":\"\",\"userPhone\":\"\",\"userCode\":\"\",\"userOrgId\":\"\",\"userRoleId\":\"\",\"userToken\":\"\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "localhostSave", getJson, "return_save");
+			
+		}
+		
+		function return_save(data){
+			set("userToken", "");
+			set("userOrgId", "");
+			set("userRoleId", "");
+			
+			var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"退出成功\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+			var json = {};
+			json["url_html"]="login.html";
+			json["viewHeigh"]="0";
+			json["loadType"]="0";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "");
+			
+		}
+
+		function viewWillAppear() {
+			//显示头部导航栏
+			init_title();
+		}
+		
+		function leftBtnClick() {
+            window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+        };
+        
+        
+        document.getElementById('phone').addEventListener('tap', function () {
+			var json = "{\"url_html\":\"edit_phone.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+		});
+		document.getElementById('email').addEventListener('tap', function () {
+			var json = "{\"url_html\":\"edit_email.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+		});
+		document.getElementById('password').addEventListener('tap', function () {
+			var json = "{\"url_html\":\"edit_password.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+				<div class="content dl_bei">
+					<!-- 这里是页面内容区 -->
+					<div class="logo">
+						<a href=""><img src="images/success.png" class="img-responsive"></a>
+					</div>
+					<div class="list-blocl">
+						<div class="cent">充值申请已受理，请耐心等待资金到帐</div>
+						<div class="cent orange mt_1 fz7">根据不同银行的规定和接口标准，资金到账时间为：实时~2小时</div>
+
+						<div class="dl_den">
+							<a class="button btn_big2 subm" href="#">立即投资</a>
+							<a class="button btn_big2 mt_12" onclick=leftBtnClick();>查看余额</a>
+							<a class="button btn_big2 mt_12" onclick=gotoNextHtml("uc_cz.html");>继续充值</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "充值申请";
+			json["leftViewImg"] = "goback";
+			json["rightViewTitle"] = "记录";
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+            //暂时做成查看余额的样子
+			function leftBtnClick() {
+				var json = {};
+ 				json["backIndex"]="0";
+ 				json["backNum"]="2";
+				window.APPJS.unifyClassMethod("NavgationViewClass", "backMain", JSON.stringify(json), "");
+			}
+			
+			function rightBtnClick() {
+				gotoNextHtml("uc_czjl.html");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

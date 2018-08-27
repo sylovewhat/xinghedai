@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+
+				<div class="content">
+					<div class="wy13-nr1 mt_5">
+						<ul>
+							<li class="p_7">
+								<h4 style="color:#999;">可用余额(元)</h4>
+								<h4 style="font-size:0.85rem ;margin-left:0.5rem">100.00</h4>
+								<div style="clear: both;"></div>
+							</li>
+						</ul>
+					</div>
+
+					<!-- 提现金额-->
+					<div class="list-block wy13-nr1">
+						<ul>
+							<li class="p_7">
+								<h4>到帐银行</h4>
+								<h5 class="co9">工商银行(尾号4618)</h5>
+								<div style="clear: both;"></div>
+							</li>
+							<li style="padding: 0 0.75rem;">
+								<div class="item-content" style=" padding-left: 0;">
+									<div class="item-inner">
+										<div class="item-input">
+											<input type="text" placeholder="请输入提现金额，单笔最低100元">
+										</div>
+										<a class="all_ti"> 全部提现</a>
+									</div>
+								</div>
+								<div style="clear: both;"></div>
+							</li>
+
+							<li class="p_7">
+								<h4 class="co9">本月免费提现次数剩余<span class="bule">3</span>次&nbsp;</h4>
+								<h4 class="orange">可用余额不足</h4>
+								<div style="clear: both;"></div>
+							</li>
+
+						</ul>
+					</div>
+
+					<!-- 转出方式 -->
+					<div class="wy13-nr1" style="padding: 0 0.75rem;">
+						<ul>
+							<li class="way tx_bt">
+								<h4>转出方式</h4>
+								<div style="clear: both;"></div>
+							</li>
+
+							<li class="way tx_bt">
+								<label class="label-checkbox item-content">
+											<input type="radio" name="my-radio">
+											<div class="item-media fl"><i class="icon icon-form-checkbox"></i></div> 
+											<div class="fl way_cont">
+												<h4>快速到帐</h4>
+												<h5>预计当日到帐，每日限额5万元，当日剩余额度<span class="orange">50000.00</span>元。
+												限工作日<span class="orange">6:00-18:00</span>间操作。</h5>
+											</div>
+									</label>
+								<div style="clear: both;"></div>
+							</li>
+
+							<li class="way">
+								<label class="label-checkbox item-content">
+									     <input type="radio" name="my-radio">
+									     <div class="item-media fl"><i class="icon icon-form-checkbox"></i></div>		   
+										 <div class="fl way_cont">
+												<h4>普通到帐</h4>
+												<h5>当日<span class="orange">23:00</span>前申请，下一个工作日到帐，遇双休日和法定假日顺延，无金额限制。</h5>
+										  </div> 
+									</label>
+								<div style="clear: both;"></div>
+							</li>
+						</ul>
+					</div>
+
+					<div class="wy15-nr2">
+						<a class="btn" onclick=gotoNextHtml("uc_tixian2.html");>下一步</a>
+					</div>
+
+					<p class="wd_new_txt">
+						<i class="safe"><img class="img-responsive block" src="images/wd-safe.png"></i>
+						<span>您的资产由厦门国际银行资金管理系统全程监管</span>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "提现";
+			json["leftViewImg"] = "goback";
+			json["rightViewTitle"] = "提现说明";
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function rightBtnClick() {
+				
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_popupwindow"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_tip_title"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:layout_marginTop="8dip"
+                android:gravity="center"
+                android:text="@string/memo"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_tip"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dip"
+                android:gravity="center|left"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                style="@style/edit_group_line"
+                android:layout_marginTop="8dip" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/selector_popupwindow_corners"
+            android:text="@string/btn_text_confirm"
+            android:textColor="@color/main_blue"
+            android:textSize="15sp" />
+
+        <TextView style="@style/edit_group_line" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/selector_popupwindow_corners"
+            android:text="@string/btn_text_cancel"
+            android:textColor="@color/main_font_gray"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

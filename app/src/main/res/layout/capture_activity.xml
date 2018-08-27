@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fatherLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/cycle_backgroud"
+    android:fitsSystemWindows="true" >
+
+    <SurfaceView
+        android:id="@+id/preview_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" />
+
+    <com.tc.emms.zxing.ViewfinderView
+        android:id="@+id/viewfinder_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/m_header"
+            android:layout_width="match_parent"
+            android:layout_height="50dip"
+            layout="@layout/scan_header" />
+
+        <HorizontalScrollView
+            android:id="@+id/h_scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dip"
+            android:layout_marginRight="8dip"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <LinearLayout
+                    android:id="@+id/scan_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10sp"
+                    android:paddingTop="10sp" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pay_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10sp"
+                    android:paddingTop="10sp"
+                    android:visibility="gone" >
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:id="@+id/card_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10sp"
+                    android:paddingTop="10sp"
+                    android:visibility="gone" >
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <include layout="@layout/common_line" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:gravity="center" >
+
+            <TextView
+                style="@style/tv_white"
+                android:layout_marginRight="5sp"
+                android:gravity="center"
+                android:text="@string/home_qr_money" />
+
+            <TextView
+                android:id="@+id/tv_price"
+                style="@style/tv_blure"
+                android:gravity="center"
+                android:text="@null"
+                android:textSize="28sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/i_tip"
+            style="@style/tv_white"
+            android:layout_width="fill_parent"
+            android:layout_marginBottom="8dip"
+            android:text="@string/home_sm_memo" />
+
+        <ImageView
+            android:id="@+id/image_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/iv_scancode"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawablePadding="6dip"
+                android:drawableTop="@drawable/cycle_paytype_01"
+                android:gravity="center"
+                android:text="@string/pay_type_01"
+                android:textColor="@color/text_cycle_color"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/iv_paycode"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawablePadding="6dip"
+                android:drawableTop="@drawable/cycle_paytype_02"
+                android:gravity="center"
+                android:text="@string/pay_type_02"
+                android:textColor="@color/text_cycle_color"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/iv_code"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:drawablePadding="6dip"
+                android:drawableTop="@drawable/cycle_paytype_03"
+                android:gravity="center"
+                android:text="@string/pay_type_03"
+                android:textColor="@color/text_cycle_color"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/status_view"
+            style="@style/tv_white"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_marginBottom="15dip"
+            android:layout_marginLeft="35dip"
+            android:layout_marginRight="35dip"
+            android:layout_marginTop="15dip"
+            android:background="@drawable/capture_text_btn"
+            android:gravity="center"
+            android:text="@string/home_qr_status"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+</FrameLayout>

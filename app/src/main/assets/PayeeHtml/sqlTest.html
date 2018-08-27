@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+		</style>
+	</head>
+
+	<body>
+		
+		<div>
+		sql测试
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/hkJS.js"></script>
+		<script>
+		mui.init();
+		mui.ready(function () {
+			//创建
+////app数据库创建
+//				var json={};
+//				json["userToken"] = "";
+//				json["userId"] = "";
+//				json["userCode"] = "";
+//				json["userName"] = "";
+//				json["userPhone"] = "";
+//				json["userPwd"] = "";
+//				json["userOrgId"] = "";
+//				json["userOrgName"] = "";
+//				json["userRoleId"] = "";
+//				json["userRoleName"] = "";
+//				json["isLogin"] = "";
+//				json["firstLogin"] = "";
+//				json["remark"] = "";
+//				
+//				json["sqlTableName"] = "user";
+//				window.APPJS.unifyClassMethod("SqlitEncapsulation", "creadSqlTable",JSON.stringify(json), "");
+////			//插入
+//			//inserHtml();
+//				var inserjson={};
+//				inserjson["userToken"] = "112";
+//				inserjson["userId"] = "997";
+//				inserjson["userCode"] = "";
+//				inserjson["userName"] = "测试3";
+//				inserjson["userPhone"] = "";
+//				inserjson["userPwd"] = "";
+//				inserjson["userOrgId"] = "";
+//				inserjson["userOrgName"] = "";
+//				inserjson["userRoleId"] = "";
+//				inserjson["userRoleName"] = "";
+//				inserjson["isLogin"] = "1";
+//				inserjson["firstLogin"] = "";
+//				inserjson["remark"] = "";
+//				
+//				inserjson["sqlTableName"] = "user_info";
+//			window.APPJS.unifyClassMethod("SqlitEncapsulation", "saveCell",JSON.stringify(inserjson), "");	
+
+	//setWhere();
+//设置所有用户信息的isLogin为0
+			//setAllIsLogin();
+//			var json1={};
+//		json1["userToken"] = "1";
+//		json1["userId"] = "1";
+//		json1["userCode"] = "1";
+//		json1["userName"] = "1";
+//		json1["userPhone"] = "1";
+//		json1["userOrgId"] = "1";
+//		json1["userOrgName"] = "1";
+//		json1["userRoleId"] = "1";
+//		json1["userRoleName"] = "1";
+//		json1["isLogin"] = "1";
+//		json1["firstLogin"] = "";
+//		json1["remark"] = "";
+//			
+//		json1["sqlTableName"] = "user_login";
+//		window.APPJS.unifyClassMethod("SqlitEncapsulation", "saveCell",JSON.stringify(json1), "");	
+		
+////			//遍历数据
+			var json2={};
+			json2["sqlTableName"] = "app_html5";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectAll",JSON.stringify(json2), "alertHtml");
+//			
+			//清空数据
+//	var sqlJson1 = "{\"sqlTableName\":\"user_login\"}";
+//	window.APPJS.unifyClassMethod("SqlitEncapsulation", "deleteAll",sqlJson1, "delHtml");
+
+	//删除表
+			//var sqlJson1 = "{\"sqlTableName\":\"user_login\"}";
+			//window.APPJS.unifyClassMethod("SqlitEncapsulation", "deleteTable",sqlJson1, "");
+		
+		//查询根据isLogin。判断是否有isLogin为1的数据
+			//selectIsLogin();
+		//查询根据手机号。查询用户信息
+			//	selectByPhone();
+		});
+	
+	function setWhere(){
+		var json2={};
+			json2["userName"] = "1909011000";
+			json2["sql"] = "where id=2";
+			json2["sqlTableName"] = "user";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "updataCell",JSON.stringify(json2), "");
+	}
+	
+	function setAllIsLogin(){
+		var json={};
+		json["isLogin"]  = "0";
+		
+		json["sqlTableName"] = "user";
+		window.APPJS.unifyClassMethod("SqlitEncapsulation", "updateAll",JSON.stringify(json), "");	
+	}
+	
+	function selectIsLogin(){
+		var json={};
+			json["isLogin"]  = "1";
+			
+			json["sqlTableName"] = "user_info";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectCell",JSON.stringify(json), "alertHtml");	
+}
+	
+function selectByPhone(){
+		var json={};
+			json["userPhone"]  = get("userPhone");
+			
+			json["sqlTableName"] = "user_info";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectCell",JSON.stringify(json), "alertHtml");	
+}
+
+		function creatHtml(){
+			var json={};
+			
+			json["sqlTableName"] = "user";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "creadSqlTable",JSON.stringify(json), "");	
+		}
+		
+		function inserHtml(){
+			var json={};
+			json["userName"] = "小米";
+			json["userPhone"] = "345678";
+			
+			json["sqlTableName"] = "user";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "saveCell",JSON.stringify(json), "");	
+		}
+		
+		function delHtml(){
+			alert("清空成功");
+			var sqlJson = "{\"sqlTableName\":\"user\"}";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectAll",sqlJson, "selectHtml");
+		}
+		
+		function selectHtml(userJson){
+			alert(JSON.stringify(userJson));
+		}
+		
+		function alertHtml(userJson1){
+			alert(JSON.stringify(userJson1));
+		}
+		
+		function isEmpty(s) {
+			return s == null || typeof s == undefined || s == "" || s.length == 0 || s == "null";
+		}
+		</script>
+	</body>
+
+</html>

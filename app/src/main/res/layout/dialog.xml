@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_loading_bg"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="10dip" >
+
+    <com.tc.emms.widget.IndeterminateProgress
+        android:id="@+id/load_and_retry_loading_v"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/mylaoding_text_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="30dip"
+        android:paddingTop="5dip"
+        android:text="@string/loading_value" />
+
+</LinearLayout>

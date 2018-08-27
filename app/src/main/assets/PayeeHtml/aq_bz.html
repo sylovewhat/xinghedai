@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信和贷</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- SUI模板-基本样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm.min.css">
+    <!-- SUI模板-拓展包样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page">  
+        <div class="content dl_bei">
+            <!-- 这里是页面内容区 -->
+			<div class="aq_ban"><a href=""><img class="Automatic_scaling" src="images/baozhang.jpg"></a></div>
+			<div class="card-content">
+			  <div class="list-block media-list">
+				<ul class="list_ul">
+				  <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img1.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">平台实力雄厚</div>
+					  </div>
+					  <div class="item-subtitle">5000万实缴注册资本，两轮数千万股权融资</div>
+					</div>
+				  </li>				  
+				  <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img2.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">资金联合存管</div>
+					  </div>
+					  <div class="item-subtitle">福建农商银行及富有支付，资金联合存管</div>
+					</div>
+				  </li>
+				  
+				  <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img3.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">周密的风控体系</div>
+					  </div>
+					  <div class="item-subtitle">信和贷引入人行征信查询端口，有效排查问题借款</div>
+					</div>
+				  </li>
+				  <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img4.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">投资去向透明</div>
+					  </div>
+					  <div class="item-subtitle">投资人投资的每一笔项目，去向透明可追踪</div>
+					</div>
+				  </li>
+				  
+				   <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img5.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">领先的网络安全技术</div>
+					  </div>
+					  <div class="item-subtitle">阿里云全球领先、安全、稳定的云计算，有效防护黑客潜在攻击</div>
+					</div>
+				  </li>
+				  
+				   <li class="item-content blocl_li">
+					<div class="item-media">
+					  <img src="images/img6.png" width="44">
+					</div>
+					<div class="item-inner">
+					  <div class="item-title-row">
+						<div class="item-title">知名律师事务所护航</div>
+					  </div>
+					  <div class="item-subtitle">信和贷聘用大成律师事务所 提供法律咨询及法律援助</div>
+					</div>
+				  </li>			
+				  
+				</ul>
+			  </div>
+			</div>
+					
+        </div>
+    </div>
+</div>
+
+<!-- SUI模板-基本样式.js -->
+<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+<!-- SUI模板-拓展包样式.js -->
+<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script src="js/init.js"></script>
+ <script>
+ 	var json = {};
+	json["centerTitle"]="安全保障";
+	json["leftViewImg"]="goback";
+	
+	json["backgroudColor"]=NAVCOLOR;
+	window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+ 	function leftBtnClick(){
+    		window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+    }
+function viewWillAppear() {
+		
+	}
+ </script>
+
+</body>
+</html>

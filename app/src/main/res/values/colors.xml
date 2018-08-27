@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+     This file contains resource definitions for solid colors.  In
+     addition to plain color resources (retrieved via Resources.getColor()
+     and friends), we are also using it to define drawables that are
+     a solid color.
+-->
+
+<resources>
+
+    <!-- Retrieved via Resources.getColor() and friends. -->
+    <color name="transparent">#00000000</color>
+    <color name="window_bg">#F7F7F7</color>
+    <color name="dialog_content">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <!-- NEW FRAME. -->
+    <color name="main_line_blue">#66CCFF</color>
+    <!-- new colors -->
+    <color name="main_blue">#333333</color>
+    <color name="main_red">#ff5468</color>
+    <color name="main_green">#8bda36</color>
+    <color name="main_yellow">#feb646</color>
+    <color name="main_black">#333</color>
+    <color name="main_font_black_and_gray">#666</color>
+    <color name="main_font_gray">#999</color>
+    <color name="main_line">#ddd</color>
+    <color name="main_title_backgroud">#5991e1</color>
+    <!-- <color name="main_title_backgroud">#23ac38</color> -->
+    <color name="main_text_on">#68c7fe</color>
+    <color name="main_backgroud">#f0f8fb</color>
+    <color name="paytype_text">#ffbc47</color>
+    <color name="paytype_text_on">#e3a73f</color>
+    <color name="capture_item_bgfous">#1c94f1</color>
+    <color name="btn_text">#88c4e9</color>
+    <color name="new_text_bg">#06ecc3</color>
+    <color name="lightgrey">#e0e0e0</color>
+    <color name="grey">#d4d4d4</color>
+    <!-- new colors end. -->
+    <!-- scan code -->
+    <color name="possible_result_points">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_laser">#c0ffbd21</color>
+    <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#cb000000</color>
+    <color name="viewfinder_frame">#ff4EEE94</color>
+    <!-- #ff0000ff -->
+    <color name="backgroud">#ffffffff</color>
+    <color name="title_tv_color">#ffffffff</color>
+    <!-- scan code end -->
+    <!-- 百度文字识别 -->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+</resources>

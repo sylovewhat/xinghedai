@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en" class="feedback">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <title>问题反馈</title>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" type="text/css" href="css/feedback.css"/>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+    <style>
+        .mui-popover {
+                           height: 240px;
+                    }
+
+        .no-header {
+            display: none;
+        }
+
+        .mui-content.without-header {
+            padding-top: 0;
+        }
+        
+        .update {
+				font-style: normal;
+				color: #999999;
+				margin-right: -25px;
+				font-size: 15px
+			}
+			.mui-table-view-cell:after,
+			.mui-table-view:after{background-color: #FFFFFF;}
+			.pdr10{ padding-right: 15px; margin-top: 5px;}
+			
+			.box{ background-color: #FFFFFF; }
+.box .title{border-bottom:1px dotted #ccc;display: flex;flex-direction: row; padding-bottom: 10px;}
+.box .title .l{flex: 1; justify-content: flex-start;display: flex;align-items:center;}
+.box .title .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;}
+
+.box .cont{display: flex;flex-direction:row; margin-top: 10px;}
+.box .cont .l{flex: 0.5; justify-content: flex-start;display: flex;align-items:center; color: #999;}
+.box .cont .r{flex: 1; justify-content:flex-end;display: flex;align-items:center;}
+    </style>
+</head>
+
+<body>
+<div class="mui-content">
+	
+	<div class="mui-content-padded" style="background: #FFFFFF; margin: 0;display: flex; border-bottom: 1px solid #eee;justify-content:center;display: flex;align-items:center; padding: 20px;flex-direction:column">
+		<div><img src="img/ok.png" width="50"></div>
+		<div><h4 id="comUp">提交审核</h4></div>
+	</div>
+	
+	<div class="mui-content-padded" style="background: #FFFFFF; margin: 0;display: flex; border-bottom: 1px solid #eee;justify-content:center;display: flex;align-items:center; padding: 0px;flex-direction:column">
+		<div class="mui-content-padded box">
+							<div class="cont" id="changeDiv">
+								<div class="l">变更的内容</div>
+								<div class="r" id="change"></div>
+							</div>
+						</div>
+	</div>
+	
+	 <div style="width: 100%; display: flex; z-index: 9; ">
+		<button type="button" class="mui-btn mui-btn-primary mui-btn-block" style="margin: 15px;" id="commit">完成</button>
+	</div>
+</div>
+<script src="js/mui.min.js"></script>
+<script type="application/javascript" src="js/jquery.js"></script>
+<script type="application/javascript" src="js/hkJS.js"></script>
+<script src="js/init.js"></script>
+<script type="application/javascript" src="js/interface.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.poppicker.js"></script>
+<script type="text/javascript">
+(function($, doc) {
+ 				$.ready(function() {
+					init_title();
+					init_content();
+				});
+				$.init();
+				
+			})(mui, document);
+			
+	function init_title(){
+        
+        var json = {};
+				json["centerTitle"]="系统设置";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+	}
+	function init_content(){
+		 var equipChange = GetQueryString('equipChange');
+		 if(equipChange!=""){
+		 	var strs = new Array();
+		 //	alert(equipChange.indexOf(","))
+		 	if(equipChange.indexOf(",")<0){
+		 		$("#change").html("<p>"+equipChange+"</p>");
+		 		return;
+		 	}
+		 	strs = equipChange.split(",");
+		 	$("#changeDiv").show();
+		 	for (i=0;i<strs.length;i++) {
+		 		$("#change").appendChild("<p>"+strs+"</p>");
+		 	}
+		 
+		 }else{
+		 	$("#comUp").html("无审核");
+		 	$("#change").html("<p>"+"暂无变更的内容&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+"</p>")
+		 }
+		
+	}
+	
+	
+	var commitButton = document.getElementById("commit");
+		commitButton.addEventListener("tap",function(){
+			var json = "{\"url_html\":\"index.html\",\"url_data\":\"?equipChange="+0+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			
+		});
+</script>
+</body>
+
+</html>

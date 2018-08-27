@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="font_system_title_bar">15dip</dimen>
+    <dimen name="font_dialog_text">15dip</dimen>
+    <dimen name="mainbottom_textsize">10sp</dimen>
+	<dimen name="corner_radius">0dip</dimen>
+	
+	<dimen name="global_screenshot_bg_padding">20dip</dimen>  
+</resources>

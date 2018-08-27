@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			p {
+				text-indent: 22px;
+				padding: 5px 8px;
+			}
+			
+			html,
+			body,
+			.mui-content {
+				background-color: #fff;
+			}
+			
+			h4 {
+				margin-left: 5px;
+			}
+			
+			.qrcode {
+				/*position: absolute;*/
+				top: 50px;
+				/*left: 50%;*/
+				width: 100%;
+				/*-webkit-transform: translate(-50%, 0);
+				transform: translate(-50%, 0);*/
+				text-align: center;
+			}
+			
+			.qrcode img {
+				margin: 0 auto;
+			}
+			
+			.div{
+ -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+    -webkit-animation: rotate 1s linear infinite;
+    -moz-animation: rotate 1s linear infinite;
+    -o-animation: rotate 1s linear infinite;
+    animation: rotate 1s linear infinite;}
+@-webkit-keyframes rotate{from{-webkit-transform: rotate(0deg)}
+    to{-webkit-transform: rotate(360deg)}
+}
+@-moz-keyframes rotate{from{-moz-transform: rotate(0deg)}
+    to{-moz-transform: rotate(359deg)}
+}
+@-o-keyframes rotate{from{-o-transform: rotate(0deg)}
+    to{-o-transform: rotate(359deg)}
+}
+@keyframes rotate{from{transform: rotate(0deg)}
+    to{transform: rotate(359deg)}
+}
+			
+		</style>
+	</head>
+
+	<body style="overflow: hidden; background: #FFFFFF;">
+		
+		<div class="mui-content">
+			<div style="  width: 60%; height: 140px; position: absolute; left: 20%; top: 5em;justify-content:center;display: flex;align-items:center;flex-direction: column;display: none;">
+				<span class="mui-icon mui-icon-loop mui-spin div" style="font-size: 45px; color: #333;"></span>
+				<span style="margin-top: 15px; color: #666;">正在更新...</span>
+			</div>
+			
+			<div style="width: 60%; height: 140px; position: absolute; left: 20%; top: 5em;justify-content:center;display: flex;flex-direction: column">
+				<span style=" margin-bottom: 5px;">本次更新内容</span>
+				<span style=" color: #999; font-size: 13px;" id="setRemark">1111111</span>
+				
+			</div>
+			<img src="img/up.png" style="width: 100%;">
+		</div>
+		<p style="text-align: center;" id="setVerName"></p>
+		<div style="padding: 30px;">
+		 <button type="button" class="mui-btn mui-btn-block mui-btn-outlined" style=" border-radius:30px ; color: #999; padding: 10px; font-size: 15px;" id="updateBut">立即更新</button>
+		 </div>
+		<script src="js/mui.min.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/hkJS.js"></script>
+		<script src="js/interface.js"></script>
+		<script>
+		mui.init();
+		var _appType="";
+		var _verName="";
+		var _filePath="";
+		var _remark="";
+		
+		
+		var jsonppa = {};	
+		jsonppa["showType"]="1";
+		window.APPJS.unifyClassMethod("NavgationViewClass", "navgationViewBarLoad", JSON.stringify(jsonppa), "");	
+		
+		//禁止ios该页面侧滑
+		window.APPJS.unifyClassMethod("HtmlUpdateClass", "stopGesture", "", "");
+			
+		mui.ready(function () {
+			_appType = GetQueryString('_appType');
+			_verName = GetQueryString('_verName');
+			_filePath = GetQueryString('_filePath');
+			_remark = GetQueryString('_remark');
+			
+			document.getElementById('setVerName').innerHTML ="当前版本: v"+ _verName;
+			document.getElementById('setRemark').innerHTML = _remark;
+			//document.getElementById('setFilePath').innerHTML = _filePath;
+			
+		});
+		
+		//点击更新
+		 document.getElementById("updateBut").addEventListener('tap', function(e) {
+			var json = {};
+			
+			if(get("appType")=="IOS"){
+			//苹果更新
+				//json["url_html"]="https://itunes.apple.com/cn/app/id1001153553upgrade.html";
+			}else{
+			//安卓更新
+				//json["url_html"]="http://rpcs.myapp.com/myapp/rcps/d/93828/tencentwifimanager_3.1.1.1814_android_20171204152536-reunion-release_wifi_20171206121030_999002_693828_171206213541a.apk";
+			}
+			
+			
+			json["viewHeigh"]="0";
+			json["loadType"]="1";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", JSON.stringify(json), "");	
+				
+		});
+		
+		</script>
+	</body>
+
+</html>

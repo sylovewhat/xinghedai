@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/mui.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	<title>登录</title>
+	<style type="text/css">
+	 </style>
+</head>
+
+<body style="background-color: #FAFAFA;">
+	
+ 
+<img src="img/ic_launcher_hdpi.png" style="width: 20%; margin-left: 40%; margin-top: 20%;  margin-bottom: 20px;">
+<!--<img src="img/logo.png" style="width: 50%; margin-left: 25%; margin-top: 20%;  margin-bottom: 20px;">-->
+<h4 style="text-align: center; color: #333333;  font-weight: 500; margin-bottom: 50px; ">设备故障报修平台</h4>
+<div class="mui-content" style="background-color: #FAFAFA; display: none;" id="main1">
+			<div class="mui-content-padded" style="margin: 10%;">
+				<div class="mui-input-row">
+					<input type="text" id="userCode" placeholder="请输入登录名 " style="border-radius:20px; margin-bottom: 30px; text-align: left; padding: 20px;height: 45px;">
+				</div>
+				<div class="mui-input-row">
+					<input type="password" id="userPwd" placeholder="请输入密码"  style="border-radius:20px; margin-bottom: 30px; text-align: left; padding: 20px;height: 45px;">
+				</div>
+				<button type="button" id="login1" class="mui-btn mui-btn-primary mui-btn-block" style="border-radius:20px;height: 45px;">进入系统</button>
+				<div class="mui-input-row" style="text-align: center;margin-top: 50px;">
+					<h5 style="padding: 10px; display: inline;color: #003473;">
+						免密码登录
+					</h5>
+				</div>
+			</div>
+</div>
+
+<div class="mui-content" style="background-color: #FAFAFA;" id="main2">
+			<div class="mui-content-padded" style="margin: 10%;">
+				<div class="mui-input-row" style="position: relative;">
+					<input type="text" id="userPhone" placeholder="手机号"  maxlength="11" style="border-radius:20px; margin-bottom: 30px; text-align: left; padding: 20px;height: 45px;">
+					<button id="btn" type="button" style=" position: absolute; right: 10px; top: 2px; padding: 10px; border: 0;">获取验证码</button>
+				</div>
+				<div class="mui-input-row">
+					<input type="text" id="smsCode" placeholder="请输入验证码"  style="border-radius:20px; margin-bottom: 30px; text-align: left; padding: 20px;height: 45px;">
+				</div>
+				<button type="button" id="login2" class="mui-btn mui-btn-primary mui-btn-block" style="border-radius:20px;height: 45px;">进入系统</button>
+				<div class="mui-input-row" style="text-align: center;margin-top: 50px;">
+					<h5 style="padding: 10px; display: inline;color: #003473;">
+						账号密码登录
+					</h5>
+				</div>
+			</div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="application/javascript" src="js/jquery.js"></script>
+<script type="application/javascript" src="js/hkJS.js"></script>
+<script src="js/init.js"></script>
+<script type="application/javascript" src="js/interface.js"></script>
+<script type="text/javascript">
+	mui.init();
+	mui.ready(function() {
+	
+	
+		
+	var jsonppa = {};	
+	jsonppa["showType"]="1";
+	window.APPJS.unifyClassMethod("NavgationViewClass", "navgationViewBarLoad", JSON.stringify(jsonppa), "");	
+	
+	
+	var jsonpp = {};	
+	jsonpp["color"]="#000000";
+	window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+		
+	//禁止ios该页面侧滑
+	window.APPJS.unifyClassMethod("HtmlUpdateClass", "stopGesture", "", "");
+	
+	if(!isEmpty(get("userPhone"))){
+		$("#userPhone").val(get("userPhone"));
+	}
+	if(!isEmpty(get("userCode"))){
+		$("#userCode").val(get("userCode"));
+	}
+	
+	$("#main1 h5").on("tap",function(){
+		$("#main1").hide();
+		$("#main2").show();
+		
+	})
+	
+	$("#main2 h5").on("tap",function(){
+		$("#main2").hide();
+		$("#main1").show();
+	})
+	
+	$("#btn").on("tap",function(){
+		var userPhone=$("#userPhone").val();
+		
+		if(isEmpty(userPhone)){
+			var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入手机号";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+		}
+		
+		if(checkPhone(userPhone)){
+    		var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入正确的手机号";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+    	}
+
+		new invokeSettime("#btn");
+
+		var json =requestJson(10);
+		json["userPhone"]=userPhone;
+		var jsonstr = JSON.stringify(json);
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "");
+	})
+	
+	
+	var loginType;
+	
+	$("#login1").on("tap",function(){
+		loginType = 1;
+		var json =requestJson(2);
+		var userCode=$("#userCode").val();
+		var userPwd=$("#userPwd").val();
+		json["userCode"]=userCode;
+		json["userPwd"]=userPwd;
+		json["appType"] = get("appType");
+		json["userPhone"]="";
+		
+		if(isEmpty(userCode)){
+			var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入用户名";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+		}
+		
+		if(isEmpty(userPwd)){
+			var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入密码";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+		}
+		
+		var jsonstr = JSON.stringify(json);
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_loginAction");
+	})
+	
+	$("#login2").on("tap",function(){
+		loginType = 2;
+		var json =requestJson(2);
+		var userPhone=$("#userPhone").val();
+		var smsCode=$("#smsCode").val();
+		
+		if(isEmpty(userPhone)){
+			var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入手机号";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+		}
+		
+		if(checkPhone(userPhone)){
+    		var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入正确的手机号";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+    	}
+		
+		if(isEmpty(smsCode)){
+			var json={};
+			json["showType"]="0";
+			json["showTitle"]="请输入短信验证码";
+			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", JSON.stringify(json), "");
+			return;
+		}
+		
+		json["userPhone"]=userPhone;
+		json["smsCode"]=smsCode;
+		json["appType"] = get("appType");
+		var jsonstr = JSON.stringify(json);
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_loginAction");
+	})
+	
+	
+	
+
+	function invokeSettime(obj){
+	    var countdown=60;
+	    settime(obj);
+	    function settime(obj) {
+	        if (countdown == 0) {
+	            $(obj).attr("disabled",false);
+	            $(obj).text("获取验证码");
+	            countdown = 60;
+	            return;
+	        } else {
+	            $(obj).attr("disabled",true);
+	            $(obj).text("(" + countdown + ") s 重新发送");
+	            countdown--;
+	        }
+	        setTimeout(function() {
+	                    settime(obj) }
+	                ,1000)
+	    }
+	}
+	
+});
+
+	var tempUserInfo;
+	function return_loginAction(response) {
+	if(!response["success"]) {
+		/* 弹出提示 */
+		var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+			"\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+
+		return;
+	}
+	tempUserInfo = response;
+		//查询根据手机号。查询用户信息
+		selectByPhone(response);
+		
+	}
+
+	function selectByPhone(response){
+			var json={};
+			json["userPhone"]  = response["userPhone"];
+			
+			json["sqlTableName"] = "user_login";
+			window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectCell",JSON.stringify(json), "checkByPhone");	
+	}
+	
+	//有数据则更新用户信息,无则插入用户信息
+	function checkByPhone(response){
+		
+		
+		//设置所有用户的isLogin为0 无登录
+		var isLoginJson={};
+		isLoginJson["isLogin"]  = "0";
+		
+		isLoginJson["sqlTableName"] = "user_login";
+		window.APPJS.unifyClassMethod("SqlitEncapsulation", "updateAll",JSON.stringify(isLoginJson), "");	
+
+		if(isEmpty(response)){
+			
+		//插入
+		var json1={};
+		json1["userToken"] =tempUserInfo["userToken"];
+		json1["userId"] = tempUserInfo["userId"];
+		json1["userCode"] = tempUserInfo["userCode"];
+		json1["userName"] = tempUserInfo["userName"];
+		json1["userPhone"] = tempUserInfo["userPhone"];
+		json1["userOrgId"] = tempUserInfo["userOrgId"];
+		json1["userOrgName"] = tempUserInfo["userOrgName"];
+		json1["userRoleId"] = tempUserInfo["userRole"];
+		json1["userRoleName"] = tempUserInfo["userRoleName"];
+		json1["isLogin"] = "1";
+		json1["firstLogin"] = "";
+		json1["remark"] = "";
+			
+		json1["sqlTableName"] = "user_login";
+		window.APPJS.unifyClassMethod("SqlitEncapsulation", "saveCell",JSON.stringify(json1), "");	
+				
+		set("userToken", tempUserInfo["userToken"]);
+		set("userId", tempUserInfo["userId"]);
+		set("userCode", tempUserInfo["userCode"]);
+		set("userName", tempUserInfo["userName"]);
+		set("userPhone",tempUserInfo["userPhone"]);
+		set("userOrgId",tempUserInfo["userOrgId"]);
+		set("userOrgName",tempUserInfo["userOrgName"]);
+		set("userRoleId",tempUserInfo["userRoleId"]);
+		set("userRoleName",tempUserInfo["userRoleName"]);
+		set("isLogin","1");
+		set("firstLogin","");
+		set("remark","");
+		
+		var jsonstr = "{\"bingKey\":\"" + tempUserInfo["userPhone"] + "\"}";
+		window.APPJS.unifyClassMethod("PushMessageClass", "countPushAccount", jsonstr, "");
+		
+		var json = "{\"url_html\":\"index.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+		
+		
+		}else{
+		//更新
+		var json1={};
+		json1["userToken"] =tempUserInfo["userToken"];
+		json1["userId"] = tempUserInfo["userId"];
+		json1["userCode"] = tempUserInfo["userCode"];
+		json1["userName"] = tempUserInfo["userName"];
+		json1["userOrgId"] = tempUserInfo["userOrgId"];
+		json1["userOrgName"] = tempUserInfo["userOrgName"];
+		json1["userRoleId"] = tempUserInfo["userRole"];
+		json1["userRoleName"] = tempUserInfo["userRoleName"];
+		json1["isLogin"] = "1";
+		json1["firstLogin"] = "1";
+		json1["remark"] = "";
+		
+		json1["sql"] = "where userPhone ="+tempUserInfo["userPhone"];
+		json1["sqlTableName"] = "user_login";
+		window.APPJS.unifyClassMethod("SqlitEncapsulation", "updataCell",JSON.stringify(json1), "");	
+				
+		set("userToken", tempUserInfo["userToken"]);
+		set("userId", tempUserInfo["userId"]);
+		set("userCode", tempUserInfo["userCode"]);
+		set("userName", tempUserInfo["userName"]);
+		set("userPhone",tempUserInfo["userPhone"]);
+		set("userOrgId",tempUserInfo["userOrgId"]);
+		set("userOrgName",tempUserInfo["userOrgName"]);
+		set("userRoleId",tempUserInfo["userRoleId"]);
+		set("userRoleName",tempUserInfo["userRoleName"]);
+		set("isLogin","1");
+		set("firstLogin","1");
+		set("remark","");
+		
+		var jsonstr = "{\"bingKey\":\"" + tempUserInfo["userPhone"] + "\"}";
+		window.APPJS.unifyClassMethod("PushMessageClass", "countPushAccount", jsonstr, "");
+		
+		var json = "{\"url_html\":\"index.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+		window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+		
+		
+		}
+	}
+	
+	
+	
+		var jsonStr = "{\"isOpen\":\"0\"}";
+		window.APPJS.unifyClassMethod("ToolClass", "setBack",jsonStr, "");//禁用返回键
+	
+	function viewWillAppear(){
+		var jsonStr = "{\"isOpen\":\"0\"}";
+		window.APPJS.unifyClassMethod("ToolClass", "setBack",jsonStr, "");//禁用返回键
+	}
+	
+	
+	var _toast = false;
+	function keyBackEvent(){
+		if(!_toast || !_toast.isVisible()) {
+			_toast = mui.toast('再按一次返回键退出', {
+				duration: 'long',
+				type: 'div'
+			});
+		} else {
+			window.APPJS.unifyClassMethod("NavgationViewClass", "systemExit","", "");	 
+		}
+	}
+	
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/select_list_item"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dip"
+        android:layout_marginTop="3dip"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/print_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:gravity="left"
+            android:textColor="@color/main_black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/print_add"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="3dp"
+            android:gravity="left"
+            android:textColor="@color/main_font_gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <RadioButton
+        android:id="@+id/radio_btn"
+        android:layout_width="55dip"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:clickable="false"
+        android:focusable="false" />
+
+</LinearLayout>

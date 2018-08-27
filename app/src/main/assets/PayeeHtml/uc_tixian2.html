@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+				<div class="content dl_bei">
+					<!-- 这里是页面内容区 -->
+					<div class="logo">
+						<a href=""><img src="images/success.png" class="img-responsive"></a>
+					</div>
+					<div class="list-blocl">
+						<div class="cent">提现申请提交成功，请耐心等待资金到帐</div>
+						<div class="cent mt_1 fz7">扣除手续费￥0.75 后提现金额<span class="orange">￥99.25</span></div>
+
+						<div class="dl_den">
+							<a class="button btn_big2 subm" href="#">完成</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "提现申请";
+			json["leftViewImg"] = "goback";
+			json["rightViewTitle"] = "记录";
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				var json = {};
+ 				json["backIndex"]="2";
+				window.APPJS.unifyClassMethod("NavgationViewClass", "backMain", JSON.stringify(json), "");
+			}
+
+			function rightBtnClick() {
+				gotoNextHtml("uc_czjl.html");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

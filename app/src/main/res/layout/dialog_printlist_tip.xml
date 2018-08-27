@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/transparent"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_popupwindow"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_tip_title"
+                android:layout_width="fill_parent"
+                android:layout_height="35dip"
+                android:layout_marginTop="8dip"
+                android:gravity="center"
+                android:text="@string/print_bt_list"
+                android:textColor="@color/main_black"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10sp"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/lear_updatename"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/app_list_corner_round"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp" 
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_old_name"
+                            style="@style/tv_grey"
+                            android:text="@string/set_is_print" 
+                            android:layout_width="0dip"
+                            android:layout_weight="1"/>
+
+                        <CheckBox
+                            android:id="@+id/cb_connect"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:button="@drawable/checkbox_item"
+                            android:background="@null"/>
+                    </LinearLayout>
+
+                    <include layout="@layout/common_line" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5sp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="5sp"
+                        android:paddingRight="5sp" >
+
+                        <TextView
+                            style="@style/tv_grey"
+                            android:layout_weight="1"
+                            android:text="@string/set_print_number" />
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical" >
+
+                            <Spinner
+                                android:id="@+id/spinner1"
+                                style="@style/spinner_styl"
+                                android:entries="@array/spingarr" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignRight="@id/spinner1"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="5sp"
+                                android:src="@drawable/set_spinner_arrows" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/print_list"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:cacheColorHint="@android:color/transparent"
+                android:divider="@null"
+                android:listSelector="@android:color/transparent" >
+            </ListView>
+
+            <TextView
+                style="@style/edit_group_line"
+                android:layout_marginTop="8dip" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="45dip"
+            android:background="@drawable/selector_popupwindow_corners"
+            android:text="@string/btn_text_confirm"
+            android:textColor="@color/main_black"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</RelativeLayout>

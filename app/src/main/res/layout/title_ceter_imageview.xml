@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_main"
+    android:layout_width="fill_parent"
+    android:layout_height="44dip"
+    android:background="@color/transparent"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/body_title_left_but"
+        android:layout_width="50dip"
+        android:layout_height="match_parent"
+        android:layout_margin="3dip" >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dip"
+            android:src="@drawable/goback" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/body_title_center_lay"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/body_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:text="@string/main_title_code"
+            android:textSize="16sp" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/body_title_right_but"
+        android:layout_width="60dip"
+        android:layout_height="match_parent"
+        android:layout_margin="3dip" >
+
+        <TextView
+            android:id="@+id/tv_edit"
+            android:layout_width="60dip"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/pic_local"
+            android:textSize="13sp"/>
+    </FrameLayout>
+
+</LinearLayout>

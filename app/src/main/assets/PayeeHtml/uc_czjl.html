@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+				<header class="bar bar-nav">
+					<h1 class="title dl-title">
+			     <a class="jl_nav cur" >充值记录</a>
+			     <a class="jl_nav " href="uc_tx_jl.html">提现记录</a>
+			</h1>
+				</header>
+
+				<div class="content ">
+					<!-- 这里是页面内容区 -->
+					<div class="list-block3 bg">
+						<div class="tj_bank ">
+							<ul>
+								<li class="bot">
+									<div class="bank l_h2">
+										<h5 class="co3 fz75">充值受理中 </h5>
+										<h5 class="co9 fz62">2018-06-05 15:00:00</h5>
+									</div>
+
+									<div class="bank txt_r l_h2">
+										<h5 class="co9 fz75">50.00</h5>
+										<h5 class="co9 fz62">订单号:2018****971614</h5>
+									</div>
+								</li>
+
+								<li class="bot">
+									<div class="bank l_h2">
+										<h5 class="co3 fz75">充值成功 </h5>
+										<h5 class="co9 fz62">2018-06-05 15:00:00</h5>
+									</div>
+
+									<div class="bank txt_r l_h2">
+										<h5 class="bule fz75">50.00</h5>
+										<h5 class="co9 fz62">订单号:2018****971614</h5>
+									</div>
+								</li>
+
+								<li class="bot">
+									<div class="bank l_h2">
+										<h5 class="co3 fz75">充值失败</h5>
+										<h5 class="co9 fz62">2018-06-05 15:00:00</h5>
+									</div>
+
+									<div class="bank txt_r l_h2">
+										<h5 class="orange fz75">50.00</h5>
+										<h5 class="co9 fz62">订单号:2018****971614</h5>
+									</div>
+								</li>
+								<li class="bot">
+									<div class="bank l_h2">
+										<h5 class="co3 fz75">充值失败</h5>
+										<h5 class="co9 fz62">2018-06-05 15:00:00</h5>
+									</div>
+
+									<div class="bank txt_r l_h2">
+										<h5 class="orange fz75">50.00</h5>
+										<h5 class="co9 fz62">订单号:2018****971614</h5>
+									</div>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "记录";
+			json["leftViewImg"] = "goback";
+			json["rightViewTitle"] = "限额说明";
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				var json = {};
+ 				json["backIndex"]="2";
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", JSON.stringify(json), "");
+			}
+
+			function rightBtnClick() {
+				gotoNextHtml("uc_limit.html");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

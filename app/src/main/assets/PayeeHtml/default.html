@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>默认页</title>
+		<style type="text/css">
+
+		</style>
+	</head>
+
+	<body>
+
+		<img src="./img/defaultImg.png" width="100%" height="auto">
+
+	</body>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script src="js/init.js"></script>
+	<script type="text/javascript">
+		var fristTurn = 0;
+		var postType = 0;
+		var saveJson;
+		mui.init();
+		mui.ready(function() {
+			var jsonStr1 = "{\"showType\":\"1\"}";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "navgationViewBarLoad",jsonStr1, "");
+			
+         //这个主要是设置开屏页全屏，其他运用webactivity的页面不全屏二做的值预设
+	     var jsonStatusBar = {};
+	     jsonStatusBar["is_ShowStatusBar"]="1";//0表示全屏 1表示非全屏
+	     jsonStatusBar["activityName"]="startactivity";//页面名字
+	     jsonStatusBar["backgroudColor"]=NAVCOLOR;//状态栏颜色，也是标题栏颜色
+         window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationPresetValue", JSON.stringify(jsonStatusBar), "");
+			
+		 //主页标题栏值预设	
+		 setMainTitleBarinfo();	
+		 
+		 
+//			var jsonstr = "{\"showTitle\":\"请稍等\"}";
+//			window.APPJS.unifyClassMethod("FuctionClass", "FuctionClass", jsonstr, "");
+
+			//推送消息注册
+//			registerPush();
+//
+//			init_set();
+
+			setTimeout(function() {
+				/* 添加底部导航 */
+				setTabBarInfo();
+			}, 3000);
+		});
+
+		//推送消息注册
+		function registerPush() {
+			window.APPJS.unifyClassMethod("PushMessageClass", "registerPush", "",
+				"");
+		}
+
+		/*  ************************************** 推送消息回调  ************************************** */
+		function backMessageReceived(json) {
+
+			var speakText = "";
+			if(get("appType") == "IOS"){
+				var data = json["aps"];
+				speakText = data["alert"];
+			}else{
+				/* 安卓  标题 title,内容 Content, 自定义内容 CustomContent*/
+				speakText = json["Content"];
+			}
+			
+			/* 语音播报 */
+			var playStr = "{\"musci\":\"" + speakText + "\",\"rate\":\"0.5\"}";
+			window.APPJS.unifyClassMethod("AudioComponents", "playMusic",
+				playStr, "");
+		}
+
+		function init_set() {
+			var getJson = "{\"uc_l_token\":\"\",\"wapLoginPhone\":\"\",\"openId\":\"\",\"merName\":\"\",\"" +
+				HTML498_VERSION +
+				"\":\"\",\"" +
+				IMG498_VERSION +
+				"\":\"\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "localhostGet",
+				getJson, "return_save");
+		}
+
+		function return_save(data) {
+			//获取总版本号
+			var htmlVersion = data[HTML498_VERSION];
+			if(htmlVersion != null && htmlVersion != "") {
+				HTML_VERSONNO = htmlVersion;
+			}
+
+			var imgVersion = data[IMG498_VERSION];
+			if(imgVersion != null && imgVersion != "") {
+				IMG_VERSONNO = imgVersion;
+			}
+
+			var wapLoginPhone = data["wapLoginPhone"];
+			var uc_l_token = data["uc_l_token"];
+			var merName = data["merName"];
+			if(wapLoginPhone == null) {
+				wapLoginPhone = "";
+				set("isLogin", "0");
+			} else {
+				set("isLogin", "1");
+			}
+			if(uc_l_token == null) {
+				uc_l_token = "";
+			}
+			if(merName == null) {
+				merName = "";
+			}
+			set("userPhone", wapLoginPhone);
+			set("tocken", uc_l_token);
+			set("merName", merName);
+			/*set("userPhone", "13012345678");
+			set("tocken", "123456");*/
+
+			window.APPJS.unifyClassMethod("FuctionClass", "getPhoneInfo",
+				"", "return_get_user_about");
+		}
+
+		function return_get_user_about(data) {
+			set("appType", data["app_type"]);
+			saveJson = requestJson(0);
+			for(var key in data) {
+				var value = data[key];
+				key = key.replace(/_(\w)/g, function(x) {
+					return x.slice(1).toUpperCase();
+				});
+				saveJson[key] = value;
+			}
+
+			htmlUpdate();
+
+		}
+
+		//资源更新检测
+		function htmlUpdate() {
+			postType = 0;
+
+			var json = {};
+			json["post_url"] = requestAry[1];
+			json["appType"] = get("appType");
+
+			json["htmlVersion"] = HTML_VERSONNO;
+			json["imgVersion"] = IMG_VERSONNO;
+
+			var jsonstr = JSON.stringify(json);
+			/* alert(jsonstr); */
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr,
+				"return_action");
+		}
+
+		function return_action(response) {
+			/* alert(response); */
+			if(!response["success"]) {
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+
+				set("userPhone", "");
+				set("tocken", "");
+				set("merName", "");
+				set("ds_time", "");
+				set("de_time", "");
+				return;
+			}
+			if(postType == 0) {
+				/* 更新返回 */
+				var htmljson = response['data']['html'];
+				if(htmljson != null) {
+					var htmlLength = response['data']['html']['uInfo'].length;
+					if(htmlLength > 0) {
+						htmlTableUpdate(response['data']['html']['uInfo']);
+						var saveAccount = "{\"" + HTML498_VERSION + "\":\"" + response['data']['html']['htmlVersion'] + "\"}";
+						window.APPJS.unifyClassMethod("FuctionClass", "localhostSave", saveAccount, "");
+					}
+				}
+
+				var imgJson = response['data']['img'];
+				if(imgJson != null) {
+					var imgLength = response['data']['img']['uInfo'];
+					if(imgLength.length > 0) {
+						var fileJson = imgLength[0];
+						var downUrl = response['data']['img']['imgUrl']  + fileJson["filename"];
+						
+						imgTableUpdate(downUrl);
+						var saveAccount = "{\"" + IMG498_VERSION + "\":\"" + response['data']['img']['imgVersion'] + "\"}";
+						window.APPJS.unifyClassMethod("FuctionClass", "localhostSave", saveAccount, "");
+					}
+				}
+				postType = 1;
+				var jsonstr = JSON.stringify(saveJson);
+				window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+
+				/* 添加底部导航 */
+				setTabBarInfo();
+			} else {
+				/* APP的配置接口 */
+			}
+
+		}
+
+		//设置底部选项卡
+		function setTabBarInfo() {
+			set("IF_LOGIN","0");
+//			var json = "{\"url_html\":\"index.html\",\"url_data\":\"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+//	window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+//	return;
+//			window.APPJS.unifyClassMethod("FuctionClass", "progressHUDend", "", "");
+//			if(fristTurn == 1) {
+//				return;
+//			}
+//			fristTurn = 1;
+			var jsonstr1 = "{\"url_html\":\"index_xinshou.html\",\"navLoadType\":\"2\",\"url_data\":\"no\",\"webLoadType\":\"0\",\"title\":\"首页\",\"image\":\"tab_bar_0_1\",\"selectedImage\":\"tab_bar_1_1\",\"selectedLabelColor\":\"#617BEF\"}";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setTabBar",
+				jsonstr1, "");
+
+			var jsonstr2 = "{\"url_html\":\"xm_lb.html\",\"navLoadType\":\"0\",\"url_data\":\"no\",\"webLoadType\":\"0\",\"title\":\"投资\",\"image\":\"tab_bar_0_2\",\"selectedImage\":\"tab_bar_1_2\",\"selectedLabelColor\":\"#617BEF\"}";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setTabBar",
+				jsonstr2, "");
+				
+			var jsonstr3 = "{\"url_html\":\"find.html\",\"navLoadType\":\"0\",\"url_data\":\"no\",\"webLoadType\":\"0\",\"title\":\"发现\",\"image\":\"tab_bar_0_3\",\"selectedImage\":\"tab_bar_1_3\",\"selectedLabelColor\":\"#617BEF\"}";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setTabBar",
+				jsonstr3, "");
+
+			var jsonstr4 = "{\"url_html\":\"uc_index2.html\",\"navLoadType\":\"2\",\"url_data\":\"no\",\"webLoadType\":\"0\",\"title\":\"我的\",\"image\":\"tab_bar_0_4\",\"selectedImage\":\"tab_bar_1_4\",\"selectedLabelColor\":\"#617BEF\"}";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setTabBar",
+				jsonstr4, "gotoIndex");
+		}
+
+		//进入首页（底部导航栏）
+		function gotoIndex() {
+			//设置头部导航栏背景颜色
+//			json = "{\"backgroudColor\":\"" + NAVCOLOR + "\"}";
+//			window.APPJS.unifyClassMethod("NavgationViewClass",
+//				"makeNavgationView", json, "");
+
+//			var jsonStr = "{\"showType\":\"1\"}";
+//			window.APPJS.unifyClassMethod("NavgationViewClass", "navgationViewBarLoad",
+//				jsonStr, "");
+			window.APPJS.unifyClassMethod("NavgationViewClass", "goToTabBar", "", "");
+		}
+
+        function setMainTitleBarinfo()
+        {
+        	var jsonTitleBar1 = {};
+	        jsonTitleBar1["is_ShowStatusBar"]="0";//0表示全屏 1表示非全屏
+	        jsonTitleBar1["is_hide"]="0";//标题是否隐藏 0表示隐藏 1表示不隐藏
+	        jsonTitleBar1["activityName"]="MainActivity";//页面名字
+	        jsonTitleBar1["backgroudColor"]=NAVCOLOR;//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar1["centerTitle"]="首页";//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar1["leftViewImg"]="none";//左边图片
+	        jsonTitleBar1["rightViewImg"]="none";//右边图片
+            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationPresetValue", JSON.stringify(jsonTitleBar1), "");
+            
+            
+            var jsonTitleBar2 = {};
+	        jsonTitleBar2["is_ShowStatusBar"]="1";//0表示全屏 1表示非全屏
+	        jsonTitleBar2["is_hide"]="1";//标题是否隐藏 0表示隐藏 1表示不隐藏
+	        jsonTitleBar2["activityName"]="MainActivity";//页面名字
+	        jsonTitleBar2["backgroudColor"]=NAVCOLOR;//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar2["centerTitle"]="投资";//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar2["leftViewImg"]="none";//左边图片
+	        jsonTitleBar2["rightViewImg"]="none";//右边图片
+            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationPresetValue", JSON.stringify(jsonTitleBar2), "");
+            
+            var jsonTitleBar3 = {};
+	        jsonTitleBar3["is_ShowStatusBar"]="1";//0表示全屏 1表示非全屏
+	        jsonTitleBar3["is_hide"]="1";//标题是否隐藏 0表示隐藏 1表示不隐藏
+	        jsonTitleBar3["activityName"]="MainActivity";//页面名字
+	        jsonTitleBar3["backgroudColor"]=NAVCOLOR;//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar3["centerTitle"]="发现";//状态栏颜色，也是标题栏颜色
+	        jsonTitleBar3["leftViewImg"]="none";//左边图片
+	        jsonTitleBar3["rightViewImg"]="none";//右边图片
+            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationPresetValue", JSON.stringify(jsonTitleBar3), "");
+            
+            
+           var jsonTitleBar4 = {};
+	       jsonTitleBar4["is_ShowStatusBar"]="0";//0表示全屏 1表示非全屏
+	       jsonTitleBar4["is_hide"]="0";//标题是否隐藏 0表示隐藏 1表示不隐藏
+	       jsonTitleBar4["activityName"]="MainActivity";//页面名字
+	       jsonTitleBar4["backgroudColor"]=NAVCOLOR;//状态栏颜色，也是标题栏颜色
+	       jsonTitleBar4["centerTitle"]="我的";//状态栏颜色，也是标题栏颜色
+	       jsonTitleBar4["leftViewImg"]="none";//左边图片
+	       jsonTitleBar4["rightViewImg"]="none";//右边图片
+           window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationPresetValue", JSON.stringify(jsonTitleBar4), "");
+        }
+
+
+
+
+		//html库更新
+		function htmlTableUpdate(htmlUpdateAry) {
+			for(var i = 0; i < htmlUpdateAry.length; i++) {
+				var json = htmlUpdateAry[i];
+				//先判断更新库里是否已有该h5的记录，有，先删除
+				var sqlJson = {};
+				sqlJson["sqlTableName"] = "app_html5";
+				sqlJson["filename"] = json["filename"];
+				var jsonStr = JSON.stringify(sqlJson);
+				window.APPJS.unifyClassMethod("SqlitEncapsulation", "selectCell",
+					jsonStr, "return_saveApp");
+
+				//删除Json数据中的id属性  
+				delete json["id"];
+
+				//保存更新记录
+				json["sqlTableName"] = "app_html5";
+				var jsonStr2 = JSON.stringify(json);
+				//alert(jsonStr);
+				window.APPJS.unifyClassMethod("SqlitEncapsulation", "saveCell",
+					jsonStr2, "");
+
+			}
+			window.APPJS.unifyClassMethod("HtmlUpdateClass", "htmlUpdate",
+                                      "", "");
+		}
+
+		function imgTableUpdate(filename) {
+			var json = "{\"post_url\":\"" + filename + "\"}";
+			window.APPJS.unifyClassMethod("ImageChoiceViewController", "downFile",
+				json, "");
+		}
+
+		//删除之前旧的更新库记录
+		function return_saveApp(ary) {
+			for(var i = 0; i < ary.length; i++) {
+				var json = ary[i];
+				json["sqlTableName"] = "app_html5";
+				var jsonStr = JSON.stringify(json);
+				window.APPJS.unifyClassMethod("SqlitEncapsulation", "deleteCell",
+					jsonStr, "");
+			}
+		}
+
+		function viewWillAppear() {
+			
+		}
+	</script>
+
+</html>

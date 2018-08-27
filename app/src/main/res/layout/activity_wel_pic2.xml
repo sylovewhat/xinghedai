@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/pic_img2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_vertical"
+        android:clickable="true"
+        android:contentDescription="@null"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.64" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.36"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/iv_Indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="35dip"
+                android:background="@drawable/shape_center_line"
+                android:gravity="center"
+                android:paddingBottom="3dip"
+                android:paddingLeft="35dip"
+                android:paddingRight="35dip"
+                android:paddingTop="3dip"
+                android:text="@string/wel_login_on"
+                android:textColor="#667a86"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

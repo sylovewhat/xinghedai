@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信和贷</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- SUI模板-基本样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm.min.css">
+    <!-- SUI模板-拓展包样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page" style="display: block;">
+        <header class="bar bar-nav bar_white">
+            <a class="button button-link button-nav pull-left" href=" " data-transition='slide-out'>
+              <span class="icon icon-left icon_left_white"></span>            </a>			
+            <h1 class="title title_white">理财</h1>
+     	 </header>
+		<div class="content">
+			<div class="tx_ding">
+				<div class="tx_ding_bai">
+					<h2>【厦门】思明区某商品房抵押借款续借（第15期）</h2>
+					<div class="qywh_guo_jia">
+						<div class="row no-gutter">
+						  <div class="col-33 col_tzleft"><img class="Automatic_scaling" src="images/tz_left.png"></div>
+						  <div class="col-33 col_hri">预期年化利率</div>
+						  <div class="col-33 col_tzright"><img class="Automatic_scaling" src="images/tz_right.png"></div>
+						</div>
+					</div>
+					<div class="wen_zi">11<span>%</span></div>
+					<div class="qywh_guo_jia">
+						<div class="row no-gutter">
+						  <div class="col-33 yue_center">
+							<div class="wen">剩余金额</div>
+							<div class="wen_hei">73,830</div>
+						  </div>
+						  <div class="col-33 yue_center">
+							<div class="wen">期限</div>
+							<div class="wen_hei">15天</div>
+						  </div>
+						  <div class="col-33 yue_center">
+							<div class="wen">投标进度</div>
+							<div class="wen_hei wen_ju">20%</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="gm_xia_bai">
+					<div class="gm_chong">
+						<div class="bai_lie"><span>还款方式：</span>每月付息，到期还本（2016-10-10到期）</div>
+						<div class="bai_lie"><span>可用资金：</span>0(限购1万元)
+							<a class="gm_chongzhi" href = "">充值</a>
+							<div id="fade" class="gm_black_overlay"></div>
+						</div>
+					</div>
+					<div class="gm_zhi">
+						<div class="qywh_guo_jia">
+							<div class="row no-gutter">
+							  <div class="col-33 col_tzleft"><img class="Automatic_scaling" src="images/ju_left.png"></div>
+							  <div class="col-33 col_ju">可投份数</div>
+							  <div class="col-33 col_tzright"><img class="Automatic_scaling" src="images/ju_right.png"></div>
+							</div>
+						</div>
+						<div class="gm_shuru">
+							<div class="shu">
+								<div class="p_number">
+									<div class="f_l add_chose">
+										<a class="reduce" onClick="setAmount.reduce('#qty_item_1')" href="javascript:void(0)">
+											-</a>
+										<input type="text" name="qty_item_1" value="1" id="qty_item_1" onKeyUp="setAmount.modify('#qty_item_1')" class="text" />
+										<a class="add" onClick="setAmount.add('#qty_item_1')" href="javascript:void(0)">
+											+</a>
+										<div style="clear: both;"></div>
+									</div>
+								</div>
+							</div>
+							<h5 class="gm-h5">一份为50元，请输入投资份数<a href="">全投</a> </h5>
+							<div class="gm-select">
+								<select name="select" id="select_k1" class="xla_k">
+									<option value="选择品牌">选择加息券</option>
+									<option value="选择品牌1">1%加息券[1.00%]</option>
+									<option value="选择品牌2">2%加息券[2.00%]</option>
+								</select>
+							</div>
+							<div class="gm_yuqi">预期收益</div>
+							<div class="gm_yuqi_xian">--</div>
+						</div>
+						<div class="gm_bsty">投资即表示同意<a href="">《团贷网商友合同》</a></div>
+					</div>
+				</div>
+			</div>
+			<div style="height: 1rem;"></div>
+			<div class="dibu_anniu"><a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">立即投资</a></div>
+
+			<div id="light1" class="gm-white_content">
+				<div class="gm_white_top">
+					<span>账户充值</span><a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='none';document.getElementById('fade').style.display='none'"><img src="images/fx-cancel.png"></a>
+				</div>
+				<div class="gm_white_nei">
+					<div class="div-cz1-1">
+						<h5>支付金额</h5>
+						<h3>￥100</h3>
+					</div>
+
+					<div class="div-cz2">
+						<input type="text" class="form-control" placeholder="请输入支付密码">
+					</div>
+					<h5 class="div-cz1-h5"><a href="">忘记密码</a> </h5>
+					<div class="div-cz3">
+						<a href = "javascript:void(0)" onclick = "document.getElementById('light1').style.display='none';document.getElementById('light2').style.display='block';document.getElementById('fade').style.display='block';" class="btn">确定</a>
+					</div>
+				</div>
+			</div>
+			<div id="light2" class="gm-white_content gm-white_content2">
+				<div class="gm-tc">
+					<div class="gm-tc-nr1">
+						<h5>交易密码错误，今日还有4次机会，错误5次将锁定24小时</h5>
+					</div>
+					<div class="wy22-nr3">
+                        <A class="wy12-kf-a" href="">忘记密码</A>
+						<a class="wy22-a" href="javascript:void(0)" onclick = "document.getElementById('light2').style.display='none';document.getElementById('fade').style.display='none';document.getElementById('light1').style.display='block';document.getElementById('fade').style.display='block'">重新输入</a>
+
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<!-- SUI模板-基本样式.js
+<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+ -->
+<script type="text/javascript" src="js/jquery.1.4.2-min.js"></script>
+<script type="text/javascript" src="js/payfor.js"></script>
+
+</body>
+
+</html>

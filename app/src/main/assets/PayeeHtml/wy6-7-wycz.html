@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>信和贷</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- SUI模板-基本样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm.min.css">
+    <!-- SUI模板-拓展包样式.css -->
+    <link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page">
+        <header class="bar bar-nav bar_white">
+            <a class="button button-link button-nav pull-left" href=" " data-transition='slide-out'>
+              <span class="icon icon-left icon_left_white"></span>
+            </a>			
+            <h1 class="title title_white">网银充值</h1>
+        </header>      
+        <div class="content">
+			<div class="wyzf_top">
+				<ul>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz1.jpg"></div></a>
+					<img class="pz-t" src="images/zd.png">
+					</li>
+					<li class="wyzf_li"><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz2.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz3.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz4.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li class="wyzf_li"><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz5.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz6.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz7.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li class="wyzf_li"><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz8.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz9.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz10.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li class="wyzf_li"><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz11.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz12.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz13.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li class="wyzf_li"><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz14.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<li><a href=""> <div class="wyzf_div"><img class="img-responsive" src="images/cz15.jpg"></div></a>	<img class="pz-t" src="images/zd.png"></li>
+					<div style="clear: both;"></div>
+				</ul>
+				<div class="content-block">
+					<a href="#" class="button button-big">下一步</a>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+<!-- SUI模板-基本样式.js -->
+<script type='text/javascript' src='js/SUI/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+<!-- SUI模板-拓展包样式.js -->
+<script type='text/javascript' src='js/SUI/sm-extend.min.js' charset='utf-8'></script>
+
+<script>
+$(".wyzf_top ul li").click(function()
+{
+   $(".wyzf_top ul li").removeClass('biank-t');
+    $(".wyzf_top ul li").find('.pz-t').css('display','none');
+   $(this).addClass('biank-t');
+   $(this).find('.pz-t').css('display','block');
+}
+);
+</script>
+
+
+
+</body>
+</html>

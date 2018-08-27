@@ -1,0 +1,213 @@
+
+<!doctype html>
+<html lang="en" class="feedback">
+
+<head>
+    <meta charset="UTF-8"/> 
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">  
+	<meta http-equiv="x-rim-auto-match" content="none">     
+    <title>问题反馈</title>
+    <link rel="stylesheet" href="css/mui.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+    <style>
+        .mui-popover {
+                           height: 240px;
+                    }
+
+        .no-header {
+            display: none;
+        }
+
+        .mui-content.without-header {
+            padding-top: 0;
+        }
+        
+        .update {
+				font-style: normal;
+				color: #999999;
+				margin-right: -25px;
+				font-size: 15px
+			}
+			.mui-table-view-cell:after,
+			.mui-table-view:after{background-color: #FFFFFF;}
+			.pdr10{ padding-right: 15px; margin-top: 5px;}
+    </style>
+</head>
+
+<body>
+<div class="mui-content">
+	<div class="row mui-input-row">
+		<div class="mui-content-padded" style="margin: 0px;  margin-top: 5px;">
+			
+			<div style="width: 100%;  background:#fff; padding: 10px; border-bottom:1px dotted #ccc;">
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4; color: #999;">状态:</div>
+							<div style="flex: 1;" id="equipmentStateName"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4; color: #999;">运行状态:</div>
+							<div style="flex: 1;" id="runningStateName"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">终端号:</div>
+							<div style="flex: 1;" id="spdbNo"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备品牌:</div>
+							<div style="flex: 1;" id="equipmentBrand"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备型号:</div>
+							<div style="flex: 1;" id="equipmentModel"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备NO:</div>
+							<div style="flex: 1;" id="equipmentNo"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备名称:</div>
+							<div style="flex: 1;" id="equipmentName"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备类型:</div>
+							<div style="flex: 1;" id="equipmentTypeName"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">所属机构:</div>
+							<div style="flex: 1;" id="emOrgName"></div>
+						</div>
+						<div style="display: flex;margin-bottom: 10px;">
+							<div style="flex: 0.4;  color: #999;">设备地址：</div>
+							<div style="flex: 1;" id="address"></div>
+						</div>
+					</div>
+
+			
+					<!--< 
+					<div class="mui-input-row pdr10">
+						<label>终端号：</label>
+						<input type="text" id="spdbNo"  name="spdbNo"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备品牌：</label>
+						<input type="text" id="equipmentBrand" name="equipmentBrand"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备型号：</label>
+						<input type="text" id="equipmentModel" name="equipmentModel"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备NO：</label>
+						<input type="text" id="equipmentNo" name="equipmentNo"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备名称：</label>
+						<input type="text" id="equipmentName" name="equipmentName"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备类型：</label>
+						<input type="text" id="equipmentTypeName" name="equipmentTypeName"  style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>所属机构：</label>
+						<input type="text" id="emOrgName" name="emOrgName" style="text-align: right;" disabled="disabled">
+					</div>
+					<div class="mui-input-row pdr10">
+						<label>设备地址：</label>
+						<input type="text" id="address" name="address"  style="text-align: right;" disabled="disabled">
+					</div>					-->
+			</div>
+    </div>
+    
+   
+
+<script src="js/mui.min.js"></script>
+<script type="application/javascript" src="js/jquery.js"></script>
+<script type="application/javascript" src="js/hkJS.js"></script>
+<script src="js/init.js"></script>
+<script type="application/javascript" src="js/interface.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.poppicker.js"></script>
+<script>
+	(function($, doc) {
+ 				$.ready(function() {
+					init_title();
+					init_content();
+				});
+				$.init();
+				
+			})(mui, document);
+	
+	
+	
+	function init_title() {
+    	
+    	var json = {};
+				json["centerTitle"]="设备详情";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+    	
+	}
+	function init_content(){
+		var _id = GetQueryString('_id');
+        var json =requestJson(24); 
+		json["id"]=_id;
+		var jsonstr = JSON.stringify(json);
+		window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+		 
+	}
+	function return_action(response){
+				if(!response["success"]) {
+					tokenAction(response);
+							/* 弹出提示 */
+							var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+								"\"}";
+							window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+			
+							mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+							/* 清空列表 */
+							indexTable.innerHTML="";
+							
+							set("userPhone", "");
+							set("tocken", "");
+							set("merName","");
+							set("ds_time","");
+							set("de_time","");
+							return;
+				}  
+				
+				dotList = response["dotlist"];
+				var types = response["dotOrgType"];
+				var vo = response["vo"];
+				var equipChange = response["equipChange"];
+				$("#equipId").html(vo.id);
+				$("#spdbNo").html(vo.spdbNo);
+				$("#equipmentStateName").html(vo.equipmentStateName)
+				$("#equipmentBrand").html(vo.equipmentBrand);
+				$("#equipmentModel").html(vo.equipmentModel);
+				$("#equipmentNo").html(vo.equipmentNo);
+				$("#equipmentName").html(vo.equipmentName);
+				$("#equipmentTypeName").html(vo.equipmentTypeName);
+				$("#address").html(vo.address);
+				$("#equipmentTypeId").html(vo.equipmentTypeId);
+				$("#emOrgName").html(vo.emOrgName);
+				$("#dotOrgId").html(vo.dotOrgId);
+				$("#runningStateName").html(vo.runningStateName);
+	}
+	function leftBtnClick() {
+            	window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+        	};
+</script>
+</body>
+</html>

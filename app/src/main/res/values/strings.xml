@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">信和贷</string>
+    <string name="main_tip_notice">设备报修平台提示您：</string>
+    <string name="memo">提示</string>
+    <string name="btn_text_confirm">确定</string>
+    <string name="btn_text_cancel">取消</string>
+    <string name="wel_login_on">立即体验</string>
+    <string name="loading_value">正在加载中，请稍候</string>
+    <string name="loading_faile">连接超时，请重试</string>
+    <string name="net_noselect">网络连接不可用</string>
+    <string name="main_foot_first">首页</string>
+    <string name="main_foot_second">商户</string>
+    <string name="main_foot_thired">数据</string>
+    <string name="main_foot_four">我的</string>
+    <string name="main_again_logout">再按一次退出程序</string>
+    <string name="pic_camera">拍照</string>
+    <string name="pic_local">本地相册</string>
+    <!-- 映射方法提示信息 -->
+    <string name="invoke_error">没有找到类</string>
+    <string name="invoke_error01">没有找到方法</string>
+    <string name="invoke_error02">没有权限</string>
+    <string name="invoke_error03">没有权限调用私有方法</string>
+    <string name="invoke_error04">参数错误，数据异常</string>
+    <string name="invoke_error05">被调用方法内部未被捕获的异常</string>
+    <!-- 图片上传 -->
+    <string name="no_sdcard">没有储存卡</string>
+    <string name="no_sdsave">没有找到储存目录</string>
+    <string name="pic_getfaile">获取图片资源失败，请重试</string>
+    <string name="pic_upload_seccess">图片上传成功</string>
+    <string name="pic_upload_faile">图片上传失败</string>
+    <string name="pic_upload_faile_tip">图片上传失败,是否重试?</string>
+    <!-- 图片保存 -->
+    <string name="save_base_img_faile1">图片保存失败，数据错误</string>
+    <string name="save_base_img_faile2">图片保存失败，数据为空</string>
+    <string name="save_base_img_faile3">图片保存失败，存储路径错误</string>
+    <!-- 语音合成 -->
+    <string name="speak_tts_faile1">语音播放失败，内容为空</string>
+    <string name="speak_tts_faile2">语音播放失败，合成库错误</string>
+    <!-- 二维码-->
+    <string name="main_title_code">扫描二维码</string>
+    <string name="msg_default_status">将二维码放入框内，即可自动扫描</string>
+    <string name="msg_camera_framework_bug">抱歉，相机未正常开启，请检查相机权限是否开启，然后重试</string>
+    <string name="code_error_tip">此二维码信息为非官方链接</string>
+    <string name="code_seccess_tip">扫描成功</string>
+    <!-- 微信分享 -->
+    <string name="share_tip">请选择分享方式</string>
+    <string name="wx_share_return01">分享成功</string>
+    <string name="wx_share_return02">分享取消</string>
+    <string name="wx_share_return03">分享被拒绝</string>
+    <string name="wx_share_error01">请先安装微信应用</string>
+    <string name="wx_share_error02">请先更新微信应用</string>
+    <string name="img_share_save">保存图片到手机</string>
+    <string name="img_share_weixin">分享到微信好友</string>
+    <string name="save_seccess">保存成功</string>
+    <!-- 下载 -->
+
+    <string name="app_update_tip">发现新版本</string>
+    <string name="app_update_no">版本已经是最新</string>
+    <string name="app_update_ok">立即下载</string>
+    <string name="tip_down_now">正在下载...</string>
+    <string name="rar_update_info">正在更新本地资源文件，请稍候...</string>
+    <string name="server_down_now">正在下载中，请稍候...</string>
+    <string name="server_unzip_now">正在解压，请稍候...</string>
+    <string name="tip_update_seccess">更新完成</string>
+    <string name="tip_down_faie">下载失败</string>
+    <!-- 百度文字识别 -->
+    <string name="camera_permission_required">本功能需要相机权限！</string>
+    <string name="camera_rec_faile">识别失败，请重试</string>
+    <string name="camera_rec_seccess">识别成功</string>
+    <!-- 商户版 交易 -->
+    <string name="main_pay">收款</string>
+    <string name="main_pay_tip">请输入收款金额</string>
+    <string name="cycle_tip">收款金额必须大于0</string>
+    <string name="pay_type_01">扫码</string>
+    <string name="pay_type_02">收款码</string>
+    <string name="pay_type_03">刷卡</string>
+    <string name="home_qr_money">金额：</string>
+    <string name="home_qr_memo">请顾客扫描二维码</string>
+    <string name="home_qr_status">点击确认</string>
+    <string name="home_sm_memo">请扫描顾客的二维码</string>
+    <string name="home_scard_memo">刷卡支付</string>
+    <string name="scard_status_retry">重试</string>
+    <string name="scan_seccess">二维码识别成功</string>
+    <string name="pay_seccess">支付成功</string>
+    <string name="re_scan">重新扫描</string>
+    <string name="pay_wait">等待客户支付...</string>
+    <string name="pay_com">支付完成</string>
+    <string name="dig_goback">返回首页</string>
+    <string name="dig_next">继续收款</string>
+    <string name="scan_search_code">二维码/条形码扫描</string>
+    <string name="pay_not_sop">暂不支持</string>
+    <string name="no_member_value">没有获取到任何%1$s信息</string>
+    <!-- 支付方式 -->
+    <string name="pay_znsm">智能扫码</string>
+    <string name="pay_ymf">一码付</string>
+    <string name="pay_zfb">支付宝</string>
+    <string name="pay_wzf">微信支付</string>
+    <string name="pay_bfb">百度百付宝</string>
+    <string name="pay_yfb">苏宁易付宝</string>
+    <string name="pay_zfb_d">支付宝</string>
+    <string name="pay_wzf_d">微信</string>
+    <string name="pay_bfb_d">百度</string>
+    <string name="pay_yfb_d">苏宁</string>
+    <!-- 支付方式 End -->
+    <!-- 商户版 打印 -->
+    <string name="print_bt_notsuppest">该设备不支持蓝牙</string>
+    <string name="print_bt_notopen">请先开启蓝牙</string>
+    <string name="print_bt_list">打印机设置</string>
+    <string name="print_bt_notselect">未选择</string>
+    <string name="print_bt_select">已选择</string>
+    <string name="set_is_print">是否自动打印</string>
+    <string name="set_print_number">打印联数</string>
+    <string name="camera_bt_list">摄像头设置</string>
+    <string-array name="spingarr">
+        <item>1联</item>
+        <item>2联</item>
+        <item>3联</item>
+    </string-array>
+    <!-- 商户版 退款 -->
+
+
+    <!-- 个推 -->
+    <string name="add_tag_unknown_exception">设置标签失败，未知异常</string>
+    <string name="add_tag_success">接口调用成功</string>
+    <string name="add_tag_error_count">接口调用失败, tag数量过大, 最大不能超过200个</string>
+    <string name="add_tag_error_frequency">设置标签失败，频率过快</string>
+    <string name="add_tag_error_null">接口调用失败, tag 为空</string>
+    <string name="add_tag_error_repeat">设置标签失败, 标签重复</string>
+    <string name="add_tag_error_unbind">设置标签失败, 服务未初始化成功</string>
+    <string name="add_tag_error_not_online">还未登陆成功</string>
+    <string name="add_tag_error_black_list">该应用已经在黑名单中,请联系售后支持!</string>
+    <string name="add_tag_error_exceed">已存 tag 超过限制</string>
+
+    <string name="bind_alias_unknown_exception">绑定别名失败，未知异常</string>
+    <string name="bind_alias_success">绑定别名成功</string>
+    <string name="bind_alias_error_frequency">绑定别名失败，请求频次超限</string>
+    <string name="bind_alias_error_param_error">绑定别名失败，参数错误</string>
+    <string name="bind_alias_error_request_filter">绑定别名失败，请求被过滤</string>
+    <string name="bind_alias_error_cid_lost">绑定别名失败，未获取到cid</string>
+    <string name="bind_alias_error_connect_lost">绑定别名失败，网络错误</string>
+    <string name="bind_alias_error_alias_invalid">绑定别名失败，别名无效</string>
+    <string name="bind_alias_error_sn_invalid">绑定别名失败，sn无效</string>
+
+    <string name="unbind_alias_unknown_exception">取消绑定别名失败，未知异常</string>
+    <string name="unbind_alias_success">取消绑定别名成功</string>
+    <string name="unbind_alias_error_frequency">取消绑定别名失败，请求频次超限</string>
+    <string name="unbind_alias_error_param_error">取消绑定别名失败，参数错误</string>
+    <string name="unbind_alias_error_request_filter">取消绑定别名失败，请求被过滤</string>
+    <string name="unbind_alias_error_cid_lost">取消绑定别名失败，未获取到cid</string>
+    <string name="unbind_alias_error_connect_lost">取消绑定别名失败，网络错误</string>
+    <string name="unbind_alias_error_alias_invalid">取消绑定别名失败，别名无效</string>
+    <string name="unbind_alias_error_sn_invalid">取消绑定别名失败，sn无效</string>
+</resources>

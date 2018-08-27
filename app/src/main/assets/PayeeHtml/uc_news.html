@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body>
+		<div class="page-group">
+			<div class="page">
+
+				<div class="content ">
+					<!-- 这里是页面内容区 -->
+					<div class="list-block3 bg" style="padding: 0rem 0.75rem 0;">
+						<div class="tj_bank ">
+							<ul>
+								<li class="bot">
+									<a onclick=gotoNextHtml("uc_news_g.html");>
+										<div class="new_l">
+											<img class="img-responsive block" src="images/uc_news1.png">
+										</div>
+										<div class="new_r">
+											<h5>
+												 <span class="fl co3 fz75">系统公告</span>
+												  <span class="fr">2018-06-05</span>
+										  </h5>
+											<h5 class="mt02">信和贷2018年6月端午节放假公告</h5>
+										</div>
+									</a>
+								</li>
+								<li class="bot">
+									<a onclick=gotoNextHtml("uc_news_xiao.html");>
+										<div class="new_l">
+											<img class="img-responsive block" src="images/uc_news2.png">
+										</div>
+										<div class="new_r">
+											<h5>
+												 <span class="fl co3 fz75">我的消息</span>
+												  <span class="fr">2018-06-05</span>
+										  </h5>
+											<h5 class="mt02">信和贷2018年6月端午节放假公告</h5>
+										</div>
+									</a>
+								</li>
+
+								<li class="bot">
+									<a>
+										<div class="new_l">
+											<img class="img-responsive block" src="images/uc_news3.png">
+										</div>
+										<div class="new_r">
+											<h5>
+												 <span class="fl co3 fz75">精彩活动</span>
+												  <span class="fr">2018-06-05</span>
+										  </h5>
+											<h5 class="mt02">信和贷2018年6月端午节放假公告</h5>
+										</div>
+									</a>
+								</li>
+								<li class="bot">
+									<a>
+										<div class="new_l">
+											<img class="img-responsive block" src="images/uc_news4.png">
+										</div>
+										<div class="new_r">
+											<h5>
+												 <span class="fl co3 fz75">信和贷动态</span>
+												  <span class="fr">2018-06-05</span>
+										  </h5>
+											<h5 class="mt02">信和贷2018年6月端午节放假公告</h5>
+										</div>
+									</a>
+								</li>
+
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "消息中心";
+			json["leftViewImg"] = "goback";
+
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

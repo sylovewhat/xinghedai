@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>信和贷</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!-- SUI模板-基本样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm.min.css">
+		<!-- SUI模板-拓展包样式.css -->
+		<link rel="stylesheet" href="css/SUI/sm-extend.min.css">
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+
+	<body style="background: #fff;">
+		<div class="page-group">
+			<div class="page">
+
+				<div class="content">
+					<!-- 这里是页面内容区 -->
+
+					<div class="wd_lie">
+						<div class="wd_zctj cent">
+							<h5 class="co9">我的资产</h5>
+							<div class="wd_xia_lin">
+								<a href="#">
+									<h2 class="co3">￥10,000.00</h2>
+								</a>
+							</div>
+						</div>
+						<div class="wd_top_xia sy_box">
+							<div class="shouyi cent">
+								<h5 class="fz75 orange">27.33</h5>
+								<h5 class="co5 mt5">昨日收益(元)</h5></div>
+							<div class="shouyi cent">
+								<h5 class="fz75">1099.88</h5>
+								<h5 class="co5 mt5">累计收益(元)</h5></div>
+							<div class="shouyi cent">
+								<h5 class="fz75">11099.88</h5>
+								<h5 class="co5 mt5">待收本息(元)</h5></div>
+						</div>
+					</div>
+					<!-- 收益统计 -->
+					<div class="wd_lie">
+						<h5 class="sytj_bt co3">收益统计</h5>
+						<table class="sytj_tab">
+							<tbody>
+								<tr>
+									<td>已赚利息</td>
+									<td class="green b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>已赚加息</td>
+									<td class="green b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>已赚提前还款违约金</td>
+									<td class="green b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>已转逾期罚息</td>
+									<td class="green b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>扣除提现手续费</td>
+									<td class="green b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>扣除提现手续费</td>
+									<td class="orange b_left">-￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>扣除充值手续费</td>
+									<td class="orange b_left">-￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td>已赚总收入</td>
+									<td class=" b_left">￥1000.00</td>
+
+								</tr>
+								<tr>
+									<td class="bule">加权平均年化收益率</td>
+									<td class="bule b_left">12.00%</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+						<p class="fz65 co9">已赚利息=利息-投资管理费-利息管理费</p>
+						<div class="tj_img"><img class="img-responsive block" src="images/wd_tj.jpg"></div>
+					</div>
+					<!-- 个人理财统计 -->
+					<div class="wd_lie" style="padding-bottom:5%">
+						<h5 class="sytj_bt co3">个人理财统计</h5>
+						<table class="grlc">
+							<tbody>
+								<tr>
+									<td class="bg_tj">总投资金额</td>
+									<td class=" b_left">￥7000.00</td>
+									<td class=" b_left bg_tj">总投资笔数</td>
+									<td class=" b_left">3</td>
+								</tr>
+
+								<tr>
+									<td class="bg_tj">已回收本息</td>
+									<td class=" b_left">￥0.00</td>
+									<td class=" b_left bg_tj">已回收笔数</td>
+									<td class=" b_left">0</td>
+								</tr>
+								<tr>
+									<td class="bg_tj">待回收本息</td>
+									<td class=" b_left">￥7203.00</td>
+									<td class=" b_left bg_tj">待回收笔数</td>
+									<td class=" b_left">3</td>
+								</tr>
+								<tr>
+									<td class="bg_tj">待支出管理费</td>
+									<td class=" b_left">￥6.66</td>
+									<td class=" b_left bg_tj">已支出管理费</td>
+									<td class=" b_left">￥0.00</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<p class="fz65 co9">总投资笔数 = 已回收笔数(含坏账已垫付) + 待回收笔数 + 历史遗留无垫付坏账笔数</p>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<!-- SUI模板-基本样式.js -->
+		<script type='text/javascript' src='js/SUI/zepto.js' charset='utf-8'></script>
+		<script type='text/javascript' src='js/SUI/sm.min.js' charset='utf-8'></script>
+		<!-- SUI模板-拓展包样式.js -->
+		<script type='text/javascript' src='js/SUI/sm-extend.js' charset='utf-8'></script>
+		<script type="application/javascript" src="js/jquery.js"></script>
+		<script type="application/javascript" src="js/hkJS.js"></script>
+		<script type="application/javascript" src="js/interface.js"></script>
+		<script src="js/init.js"></script>
+		<script>
+			var json = {};
+			json["centerTitle"] = "资产统计";
+			json["leftViewImg"] = "goback";
+
+			json["backgroudColor"] = NAVCOLOR;
+			window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+
+			function leftBtnClick() {
+				window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+			}
+
+			function viewWillAppear() {
+
+			}
+		</script>
+
+	</body>
+
+</html>

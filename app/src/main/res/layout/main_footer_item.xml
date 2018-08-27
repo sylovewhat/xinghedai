@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tom="http://schemas.android.com/apk/res/com.tc.emms"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lin_text_main"
+    android:layout_width="0dip"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center"
+    android:layout_gravity="center_vertical"
+    tools:ignore="ResAuto">
+
+    <com.tc.emms.widget.RedTipTextView
+        android:id="@+id/btn_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@null"
+        android:gravity="center"
+        android:paddingRight="5dip"
+        android:text=""
+        android:textColor="@color/text_view_color"
+        android:textSize="@dimen/mainbottom_textsize"
+        tom:redTipsVisibility="invisible" />
+
+</LinearLayout>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>用户设置</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="stylesheet" href="css/mui.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+	.mui-table-view {
+		/* margin-top: 8px; */
+	}
+
+
+
+	.mui-navigate-right {
+		padding-bottom: .5rem;
+	}
+
+	.mui-table-view.list-imgLeft img {
+		width: 1.75rem;
+		height: 1.75rem;
+		margin-top: .1875rem;
+	}
+
+	.mui-table-view.list-imgLeft span {
+		vertical-align: top;
+		/* margin-top: .4375rem; */
+		display: inline-block;
+	}
+
+	.mui-table-view-cell {
+		padding: 18px 15px;
+	}
+
+	.mui-table-view.list-imgLeft .mui-navigate-right {
+		padding: .375rem 0 .3125rem .9375rem;
+	}
+	
+	
+	.login {
+	width: 100%;
+	padding: 0 8%;
+	box-sizing: border-box;
+	overflow: auto;
+	margin-top: 1.25rem;
+	position: absolute; 
+	top: 80%; 
+	bottom: 50px; 
+	left: 0px;
+}
+
+.login button {
+	width: 100%;
+	padding: .5875rem 0;
+	border: none;
+	outline: none;
+	border-radius: .3125rem;
+	-webkit-border-radius: .3125rem;
+	background: #dc2d34;
+	color: #fff;
+	font-size: 1rem;
+}
+</style>
+
+<body>
+	<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 0px;  margin-top: 15px;">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>邮箱：</label>
+						<input type="email" id="email" placeholder="请输入邮箱" style="text-align: left;">
+					</div>
+					<div class="mui-input-row">
+						<label>密码：</label>
+						<input type="password" id="password" class="mui-input-clear" placeholder="请输入密码" style="text-align: left;">
+					</div>
+				</form>
+			</div>
+			
+			<div style="width: 100%;display: flex; padding: 20px; ">
+					<button type="button" class="mui-btn mui-btn-primary mui-btn-block" id="editEmailIndex" style="margin-bottom: 0;">提交</button>
+				</div>
+			
+		</div>
+	<script src="js/mui.min.js"></script>
+	<script type="application/javascript" src="js/jquery.js"></script>
+	<script type="application/javascript" src="js/hkJS.js"></script>
+	<script src="js/init.js"></script>
+	<script type="application/javascript" src="js/interface.js"></script>
+	<script type="text/javascript">
+		
+		mui.init();
+		mui.ready(function () {
+			init_title();
+		});
+
+		function init_title() {
+			
+            var json = {};
+				json["centerTitle"]="系统设置";
+				json["leftViewImg"]="left";
+				json["backgroudColor"]=NAVCOLOR;
+				json["centerTitleColor"]="#184186";
+	            window.APPJS.unifyClassMethod("NavgationViewClass", "makeNavgationView", JSON.stringify(json), "");
+	            
+	            var jsonpp = {};	
+			jsonpp["color"]="#000000";
+			window.APPJS.unifyClassMethod("NavgationViewClass", "setStatusBarBackgroundColor", JSON.stringify(jsonpp), "");	
+		}
+		
+  		 $("#editEmailIndex").on("tap",function(){
+			var json =requestJson(17);
+			var email=$("#email").val();
+			var password=$("#password").val();
+			json["email"]=email;
+			json["password"]=password;
+			json["appType"] = get("appType");
+			var jsonstr = JSON.stringify(json);
+			window.APPJS.unifyClassMethod("FuctionClass", "post_action", jsonstr, "return_action");
+		})
+        
+        function return_action(response) {
+			if(!response["success"]) {
+				tokenAction(response);
+				/* 弹出提示 */
+				var jsonstr = "{\"showType\":\"0\",\"showTitle\":\"" + response["msg"] +
+					"\"}";
+				window.APPJS.unifyClassMethod("FuctionClass", "progressHUDshow", jsonstr, "");
+		
+				return;
+			}
+			var json = "{\"url_html\":\"success.html\",\"url_data\":\"?equipChange="+1+"\",\"viewHeigh\":\"0\",\"loadType\":\"0\"}";
+			window.APPJS.unifyClassMethod("FuctionClass", "sec_jump_href", json, "tabBarHidden");
+			return;
+		}
+		function leftBtnClick() {
+	        	window.APPJS.unifyClassMethod("NavgationViewClass", "back", "", "");
+	    };
+	</script>
+</body>
+
+</html>
